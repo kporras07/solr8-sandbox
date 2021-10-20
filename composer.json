@@ -14,6 +14,7 @@
         }
     ],
     "require": {
+        "drupal/devel_php": "^1.3",
         "drupal/search_api_pantheon": "^3.0",
         "drush/drush": "^10",
         "pantheon-systems/search_api_pantheon": "^8",
