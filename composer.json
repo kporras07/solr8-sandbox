@@ -16,6 +16,7 @@
     "require": {
         "drupal/search_api_pantheon": "^3.0",
         "drush/drush": "^10",
+        "pantheon-systems/search_api_pantheon": "^8",
         "pantheon-upstreams/upstream-configuration": "*"
     },
     "conflict": {
