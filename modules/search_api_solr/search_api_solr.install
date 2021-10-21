@@ -120,6 +120,7 @@ function search_api_solr_requirements($phase) {
                     $xml_new,
                   ] = SearchApiSolrUtility::normalizeXml($new_file_body);
                   if (strcmp($xml_server, $xml_new) !== 0) {
+                    kint($new_file_name, 'NEW FILE NAME!');
                     kint($xml_server, 'XML SERVER');
                     kint($xml_new, 'XML NEW!');
                     if ($version_number_server !== $version_number_new) {
