@@ -332,7 +332,7 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
     if ($file) {
       $query['file'] = $file;
     }
-    return $this->pantheonGuzzle->getQueryResult('admin/file', [
+    return $this->pantheonGuzzle->get('admin/file', [
       'query' => $query,
     ]);
 
