@@ -115,6 +115,8 @@ class SchemaPoster implements LoggerAwareInterface {
    *   A PSR-7 response object from the API call.
    */
   public function uploadSchemaFiles(array $schemaFiles): ?ResponseInterface {
+    kint(array_keys($schemaFiles), 'FILES TO BE POSTED!');
+
     // Schema upload URL.
     $uri = new Uri(
           $this->getClient()
@@ -133,6 +135,7 @@ class SchemaPoster implements LoggerAwareInterface {
             'content' => base64_encode($file_contents),
         ];
     }
+    kint($toSend, 'toSend');
 
     // Send the request.
     $request = new Request(
@@ -145,6 +148,7 @@ class SchemaPoster implements LoggerAwareInterface {
           json_encode($toSend)
       );
     $response = $this->getClient()->sendRequest($request);
+    kint($response, 'RESPONSE');
 
     // Parse the response.
     $log_function = in_array($response->getStatusCode(), [200, 201, 202, 203])

@@ -343,7 +343,6 @@ class SolrConfigSetController extends ControllerBase {
 
     $connector->alterConfigFiles($files, $solrcore_properties['solr.luceneMatchVersion'], $this->serverId);
     $this->moduleHandler()->alter('search_api_solr_config_files', $files, $solrcore_properties['solr.luceneMatchVersion'], $this->serverId);
-    kint(array_keys($files), 'FILES TO BE POSTED!');
     return $files;
   }
 
