@@ -107,6 +107,7 @@ function search_api_solr_requirements($phase) {
                   try {
                     $server_file_data = $connector->getFile($new_file_name);
                     $server_file_body = $server_file_data->getBody();
+                    kint($server_file_body, 'FILE RETRIEVED SUCCESSFULLY: ' . $new_file_name);
                   } catch (SearchApiSolrException $e) {
                     kint($e->getMessage(), 'FILE FAILED: ' . $new_file_name);
                     $server_file_body = '';
