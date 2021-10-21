@@ -130,12 +130,12 @@ class SchemaPoster implements LoggerAwareInterface {
       $this->logger->info($this->t('Encoding file: {filename}'), [
             'filename' => $filename,
         ]);
+        kint($file_contents, $filename);
       $toSend['files'][] = [
             'filename' => $filename,
             'content' => base64_encode($file_contents),
         ];
     }
-    kint($toSend, 'toSend');
 
     // Send the request.
     $request = new Request(
@@ -148,7 +148,6 @@ class SchemaPoster implements LoggerAwareInterface {
           json_encode($toSend)
       );
     $response = $this->getClient()->sendRequest($request);
-    kint($response, 'RESPONSE');
 
     // Parse the response.
     $log_function = in_array($response->getStatusCode(), [200, 201, 202, 203])
