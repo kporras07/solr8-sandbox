@@ -119,9 +119,9 @@ function search_api_solr_requirements($phase) {
                     $version_number_new,
                     $xml_new,
                   ] = SearchApiSolrUtility::normalizeXml($new_file_body);
-                  kint($xml_server, 'XML SERVER');
-                  kint($xml_new, 'XML NEW!');
                   if (strcmp($xml_server, $xml_new) !== 0) {
+                    kint($xml_server, 'XML SERVER');
+                    kint($xml_new, 'XML NEW!');
                     if ($version_number_server !== $version_number_new) {
                       $requirements['search_api_solr_schema_' . $server_id . '_modifications']['title'] = t('Solr Server %server', ['%server' => $server->label()]);
                       $requirements['search_api_solr_schema_' . $server_id . '_modifications']['value'] = t('Schema not up to date');
