@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e49b63ea3b0ec2ff6887d04d58d4e15",
+    "content-hash": "bdea7673e31eb58475e92cd03f63f88d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2507,87 +2507,16 @@
             }
         },
         {
-            "name": "drupal/search_api_pantheon",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/search_api_pantheon.git",
-                "reference": "3.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api_pantheon-3.0.0.zip",
-                "reference": "3.0.0",
-                "shasum": "e526d821aad209a65ea9bc73035c7d1749169574"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9",
-                "drupal/search_api_solr": "^4.2",
-                "drupal/search_api_solr_legacy": "*"
-            },
-            "require-dev": {
-                "drupal/coder": "2.0-beta1",
-                "drupal/drupal-extension": "^3.4",
-                "drush-ops/behat-drush-endpoint": "*",
-                "squizlabs/php_codesniffer": "2.0.*@dev"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "3.0.0",
-                    "datestamp": "1633544493",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "DamienMcKenna",
-                    "homepage": "https://www.drupal.org/user/108450"
-                },
-                {
-                    "name": "greg.1.anderson",
-                    "homepage": "https://www.drupal.org/user/438598"
-                },
-                {
-                    "name": "stevector",
-                    "homepage": "https://www.drupal.org/user/179805"
-                },
-                {
-                    "name": "stovak",
-                    "homepage": "https://www.drupal.org/user/1074930"
-                }
-            ],
-            "description": "Search API + Solr + Pantheon integration",
-            "homepage": "https://www.drupal.org/project/search_api_pantheon",
-            "support": {
-                "source": "https://git.drupalcode.org/project/search_api_pantheon"
-            }
-        },
-        {
             "name": "drupal/search_api_solr",
-            "version": "4.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/search_api_solr.git",
-                "reference": "4.2.1"
-            },
+            "version": "dev-master",
             "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api_solr-4.2.1.zip",
-                "reference": "4.2.1",
-                "shasum": "54e40c7ce41cef8edfb92807f87db06b0b13e9c8"
+                "type": "path",
+                "url": "modules/search_api_solr",
+                "reference": "e48c1fa4cc145c2d033195b0823e47787c4b46ab"
             },
             "require": {
                 "composer/semver": "^1.0|^3.0",
                 "consolidation/annotated-command": "^2.12|^4.1",
-                "drupal/core": "^8.8 || ^9",
                 "drupal/search_api": "~1.17",
                 "ext-dom": "*",
                 "ext-json": "*",
@@ -2620,21 +2549,12 @@
             },
             "type": "drupal-module",
             "extra": {
-                "drupal": {
-                    "version": "4.2.1",
-                    "datestamp": "1628871708",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                },
                 "drush": {
                     "services": {
                         "drush.services.yml": "^9"
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -2646,84 +2566,17 @@
                 {
                     "name": "Other contributors",
                     "homepage": "https://www.drupal.org/node/982682/committers"
-                },
-                {
-                    "name": "amateescu",
-                    "homepage": "https://www.drupal.org/user/729614"
-                },
-                {
-                    "name": "cspitzlay",
-                    "homepage": "https://www.drupal.org/user/419305"
-                },
-                {
-                    "name": "drunken monkey",
-                    "homepage": "https://www.drupal.org/user/205582"
-                },
-                {
-                    "name": "mkalkbrenner",
-                    "homepage": "https://www.drupal.org/user/124705"
                 }
             ],
             "description": "Offers an implementation of the Search API that uses an Apache Solr server for indexing content.",
             "homepage": "https://www.drupal.org/project/search_api_solr",
             "support": {
-                "source": "http://git.drupal.org/project/search_api_solr.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
-                "chat": "https://drupalchat.me/channel/search"
-            }
-        },
-        {
-            "name": "drupal/search_api_solr_legacy",
-            "version": "4.2.1",
-            "require": {
-                "drupal/core": "^8.8 || ^9",
-                "drupal/search_api_solr": "*"
+                "chat": "https://drupalchat.me/channel/search",
+                "source": "http://git.drupal.org/project/search_api_solr.git"
             },
-            "type": "metapackage",
-            "extra": {
-                "drupal": {
-                    "version": "4.2.1",
-                    "datestamp": "1628871708",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Berdir",
-                    "homepage": "https://www.drupal.org/user/214652"
-                },
-                {
-                    "name": "Nick_vh",
-                    "homepage": "https://www.drupal.org/user/122682"
-                },
-                {
-                    "name": "amateescu",
-                    "homepage": "https://www.drupal.org/user/729614"
-                },
-                {
-                    "name": "cspitzlay",
-                    "homepage": "https://www.drupal.org/user/419305"
-                },
-                {
-                    "name": "drunken monkey",
-                    "homepage": "https://www.drupal.org/user/205582"
-                },
-                {
-                    "name": "mkalkbrenner",
-                    "homepage": "https://www.drupal.org/user/124705"
-                }
-            ],
-            "description": "Add support for older unsupported Solr versions (3.6, >=4.5, 5.x).",
-            "homepage": "https://www.drupal.org/project/search_api_solr",
-            "support": {
-                "source": "https://git.drupalcode.org/project/search_api_solr"
+            "transport-options": {
+                "relative": true
             }
         },
         {
@@ -4186,17 +4039,11 @@
         },
         {
             "name": "pantheon-systems/search_api_pantheon",
-            "version": "8.0.0-alpha5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pantheon-systems/search_api_pantheon.git",
-                "reference": "b7970c18df71edff285973140a88fae4a51ddccd"
-            },
+            "version": "dev-master",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/b7970c18df71edff285973140a88fae4a51ddccd",
-                "reference": "b7970c18df71edff285973140a88fae4a51ddccd",
-                "shasum": ""
+                "type": "path",
+                "url": "modules/search_api_pantheon",
+                "reference": "8efbe0b2926e82465eda16d15a97c5dfadcf0601"
             },
             "require": {
                 "drupal/search_api_solr": "^4.2.1",
@@ -4225,16 +4072,40 @@
                     }
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Drupal\\search_api_pantheon\\": "src/",
+                    "Drupal\\search_api_pantheon\\tests\\": "tests/",
+                    "Drupal\\search_api\\": "vendor/drupal/search_api/src/",
+                    "Drupal\\search_api_solr\\": "vendor/drupal/search_api_solr/src/"
+                }
+            },
+            "scripts": {
+                "code:test": [
+                    "vendor/bin/phpunit -c ./phpunit.xml"
+                ],
+                "code:fix": [
+                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
+                    "vendor/bin/phpcbf . --ignore=RoboFile.php"
+                ],
+                "code:lint": [
+                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
+                    "vendor/bin/phpcs --ignore=RoboFile.php . "
+                ],
+                "pre-commit": [
+                    "composer validate --strict",
+                    "@code:fix",
+                    "@code:lint",
+                    "@code:test"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Connection module for Pantheon Search (solr 8)",
-            "support": {
-                "issues": "https://github.com/pantheon-systems/search_api_pantheon/issues",
-                "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/ea5"
-            },
-            "time": "2021-10-07T16:21:45+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "pantheon-upstreams/upstream-configuration",
@@ -8159,9 +8030,18 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "drupal/search_api_solr",
+            "version": "9999999-dev",
+            "alias": "4.2.1",
+            "alias_normalized": "4.2.1.0"
+        }
+    ],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "drupal/search_api_solr": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
