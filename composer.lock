@@ -4072,12 +4072,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pantheon-systems/search_api_pantheon.git",
-                "reference": "acbd200faecb628c56b48adf5b2ef0b55b014c02"
+                "reference": "c2fa6494b364fe9f9aee6eed121da62c9df1fdf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/acbd200faecb628c56b48adf5b2ef0b55b014c02",
-                "reference": "acbd200faecb628c56b48adf5b2ef0b55b014c02",
+                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/c2fa6494b364fe9f9aee6eed121da62c9df1fdf5",
+                "reference": "c2fa6494b364fe9f9aee6eed121da62c9df1fdf5",
                 "shasum": ""
             },
             "require": {
@@ -4116,7 +4116,7 @@
                 "issues": "https://github.com/pantheon-systems/search_api_pantheon/issues",
                 "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/container-fixes"
             },
-            "time": "2021-10-22T01:26:13+00:00"
+            "time": "2021-10-22T21:11:54+00:00"
         },
         {
             "name": "pantheon-upstreams/upstream-configuration",
