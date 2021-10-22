@@ -19,7 +19,7 @@
         "drupal/search_api_solr": "^4.2",
         "drush/drush": "^10",
         "kint-php/kint": "^3.3",
-        "pantheon-systems/search_api_pantheon": "dev-container-fixes",
+        "pantheon-systems/search_api_pantheon": "dev-cms-246-fix-get-file",
         "pantheon-upstreams/upstream-configuration": "*"
     },
     "conflict": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6422df77a040adca3143d5eb30395c1",
+    "content-hash": "473ea1d5bd474e6fbbea820a7fd761c6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4068,16 +4068,16 @@
         },
         {
             "name": "pantheon-systems/search_api_pantheon",
-            "version": "dev-container-fixes",
+            "version": "dev-cms-246-fix-get-file",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pantheon-systems/search_api_pantheon.git",
-                "reference": "acbd200faecb628c56b48adf5b2ef0b55b014c02"
+                "reference": "514978f1c20af8aed77d111c1b1f79ab6138cf17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/acbd200faecb628c56b48adf5b2ef0b55b014c02",
-                "reference": "acbd200faecb628c56b48adf5b2ef0b55b014c02",
+                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/514978f1c20af8aed77d111c1b1f79ab6138cf17",
+                "reference": "514978f1c20af8aed77d111c1b1f79ab6138cf17",
                 "shasum": ""
             },
             "require": {
@@ -4114,9 +4114,9 @@
             "description": "Connection module for Pantheon Search (solr 8)",
             "support": {
                 "issues": "https://github.com/pantheon-systems/search_api_pantheon/issues",
-                "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/container-fixes"
+                "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/cms-246-fix-get-file"
             },
-            "time": "2021-10-22T01:26:13+00:00"
+            "time": "2021-10-21T22:23:41+00:00"
         },
         {
             "name": "pantheon-upstreams/upstream-configuration",
