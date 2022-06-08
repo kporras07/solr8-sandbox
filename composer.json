@@ -15,7 +15,9 @@
         {
             "type": "path",
             "url": "modules/search_api_pantheon",
-            "symlink": false
+            "options": {
+                "symlink": false
+            }
         }
     ],
     "require": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95733536566151b65120a495fe486c60",
+    "content-hash": "b162ff271c538c725e49c86cb8f2348d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3911,7 +3911,7 @@
             "dist": {
                 "type": "path",
                 "url": "modules/search_api_pantheon",
-                "reference": "106153444695c9f2c9e07731d7f0d13610f1734c"
+                "reference": "b2a76861d5ce48c94fe4d4ff95af8a3e3001f969"
             },
             "require": {
                 "drupal/search_api_solr": "^4.2",
@@ -3980,6 +3980,7 @@
             ],
             "description": "Connection module for Pantheon Search (solr 8)",
             "transport-options": {
+                "symlink": false,
                 "relative": true
             }
         },
