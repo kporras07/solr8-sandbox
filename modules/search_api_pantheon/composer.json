@@ -16,6 +16,9 @@
         "sort-packages": true,
         "platform": {
             "php": "8.0"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "autoload-dev": {
@@ -38,11 +41,11 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-zip": "*",
-        "drupal/search_api_solr": "^4.2.1",
-        "guzzlehttp/guzzle": "^6",
+        "drupal/search_api_solr": "^4.2",
+        "guzzlehttp/guzzle": "^6.5.2",
         "http-interop/http-factory-guzzle": "^1.0",
         "php-http/guzzle6-adapter": "^2.0",
-        "kint-php/kint": "@stable"
+        "psr/event-dispatcher": "^1.0"
     },
     "require-dev": {
         "consolidation/robo": "^3.0",
@@ -50,7 +53,15 @@
         "drupal/coder": "@stable",
         "phpunit/phpunit": "@stable",
         "psy/psysh": "@stable",
-        "squizlabs/php_codesniffer": "@stable"
+        "squizlabs/php_codesniffer": "@stable",
+        "symfony/yaml": "^4"
+    },
+    "suggest":{
+        "drupal/search_api_autocomplete": "^1",
+        "drupal/search_api_spellcheck": "^3",
+        "drupal/search_api_page": "^1.0",
+        "drupal/facets": "^1.8",
+        "kint-php/kint": "@stable"
     },
     "scripts": {
         "code:test" : [

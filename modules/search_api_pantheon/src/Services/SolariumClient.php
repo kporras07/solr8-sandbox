@@ -2,41 +2,38 @@
 
 namespace Drupal\search_api_pantheon\Services;
 
-use League\Container\ContainerAwareTrait;
-use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerAwareTrait;
 use Solarium\Core\Client\Client;
 use Solarium\Core\Client\Request;
 use Solarium\Core\Client\Response;
 use Solarium\Core\Query\QueryInterface;
 use Solarium\Core\Query\Result\ResultInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\search_api_pantheon\Solarium\EventDispatcher\Psr14Bridge;
+use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
 
 /**
  * Customized Solrium Client to send Guzzle debugging to log entries.
  */
 class SolariumClient extends Client {
   use LoggerAwareTrait;
-  use ContainerAwareTrait;
 
   /**
    * Class constructor.
-   *
-   * @param \Psr\Container\ContainerInterface $container
-   *   Container interface.
    */
-  public function __construct(ContainerInterface $container) {
-    $guzzle = $container->get('search_api_pantheon.pantheon_guzzle');
-    $endpoint = $container->get('search_api_pantheon.endpoint');
+  public function __construct(PantheonGuzzle $guzzle, Endpoint $endpoint, LoggerChannelFactoryInterface $logger_factory, ContainerAwareEventDispatcher $event_dispatcher) {
+    $drupal_major_parts = explode('.', \Drupal::VERSION);
+    $drupal_major = reset($drupal_major_parts);
+    if ($drupal_major < 9) {
+      // Use the bridge only if Drupal 8.
+      $event_dispatcher = new Psr14Bridge($event_dispatcher);
+    }
     parent::__construct(
           $guzzle->getPsr18Adapter(),
-          new EventDispatcher(),
+          $event_dispatcher,
           ['endpoint' => [$endpoint]]
       );
-    $this->container = $container;
-    $this->logger = $container
-      ->get('logger.factory')
-      ->get('PantheonSolariumClient');
+    $this->logger = $logger_factory->get('PantheonSolariumClient');
     $this->setDefaultEndpoint($endpoint);
   }
 

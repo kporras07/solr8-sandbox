@@ -8,13 +8,16 @@ use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\search_api_solr\SolrConnector\SolrConnectorPluginBase;
 use Drupal\search_api_solr\SolrConnectorInterface;
 use Drupal\search_api_pantheon\Services\Endpoint as PantheonEndpoint;
-use League\Container\ContainerAwareTrait;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Solarium\Client as SolariumClient;
 use Solarium\Core\Client\Endpoint;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\search_api_pantheon\Services\PantheonGuzzle;
+use Drupal\search_api_pantheon\Services\SolariumClient as PantheonSolariumClient;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 
 /**
  * Pantheon Solr connector.
@@ -31,7 +34,6 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
     ContainerFactoryPluginInterface,
     LoggerAwareInterface {
   use LoggerAwareTrait;
-  use ContainerAwareTrait;
 
   /**
    * @var object|null
@@ -46,28 +48,48 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
   protected PantheonGuzzle $pantheonGuzzle;
 
   /**
-   * Class constructor.
+   * The solarium client service.
    *
-   * @param array $configuration
-   *   Configuration array.
-   * @param $plugin_id
-   *   The plugin id.
-   * @param array $plugin_definition
-   *   Plugin Definition array.
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-   *   Standard DJ container.
+   * @var \Drupal\search_api_pantheon\Services\SolariumClient
+   */
+  protected PantheonSolariumClient $solariumClient;
+
+  /**
+   * The date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected DateFormatterInterface $dateFormatter;
+
+  /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * Class constructor.
    */
   public function __construct(
         array $configuration,
         $plugin_id,
         array $plugin_definition,
-        ContainerInterface $container
+        LoggerChannelFactoryInterface $logger_factory,
+        PantheonGuzzle $pantheon_guzzle,
+        PantheonSolariumClient $solarium_client,
+        DateFormatterInterface $date_formatter,
+        MessengerInterface $messenger
     ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->container = $container;
-    $this->setLogger($container->get('logger.factory')->get('PantheonSearch'));
+    $this->pantheonGuzzle = $pantheon_guzzle;
+    $this->solariumClient = $solarium_client;
+    $this->dateFormatter = $date_formatter;
+    $this->messenger = $messenger;
+    $this->setLogger($logger_factory->get('PantheonSearch'));
+    $this->configuration['core'] = self::getPlatformConfig()['core'];
+    $this->configuration['schema'] = self::getPlatformConfig()['schema'];
     $this->connect();
-    $this->pantheonGuzzle = $container->get('search_api_pantheon.pantheon_guzzle');
   }
 
   /**
@@ -89,23 +111,55 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
           $configuration,
           $plugin_id,
           $plugin_definition,
-          $container
+          $container->get('logger.factory'),
+          $container->get('search_api_pantheon.pantheon_guzzle'),
+          $container->get('search_api_pantheon.solarium_client'),
+          $container->get('date.formatter'),
+          $container->get('messenger')
       );
   }
 
   /**
-   * @return array|array[]|false[]|string[]
+   * Returns platform-specific Solr configuration.
+   *
+   * @return array
+   *   Pantheon platform Solr configuration.
+   */
+  public static function getPlatformConfig() {
+    return [
+      'scheme' => getenv('PANTHEON_INDEX_SCHEME'),
+      'host' => getenv('PANTHEON_INDEX_HOST'),
+      'port' => getenv('PANTHEON_INDEX_PORT'),
+      'path' => getenv('PANTHEON_INDEX_PATH'),
+      'core' => getenv('PANTHEON_INDEX_CORE'),
+      'schema' => getenv('PANTHEON_INDEX_SCHEMA'),
+    ];
+  }
+
+  /**
+   * Returns TRUE if all platform-related configuration values are present.
+   *
+   * @return bool
+   *   TRUE if all platform-related configuration values are present.
+   */
+  public static function isPlatformConfigPresent() {
+    $config = self::getPlatformConfig();
+
+    return count($config) === count(array_filter($config));
+  }
+
+  /**
+   * @return array
    */
   public function defaultConfiguration() {
-    return array_merge(parent::defaultConfiguration(), [
-          'scheme' => getenv('PANTHEON_INDEX_SCHEME'),
-          'host' => getenv('PANTHEON_INDEX_HOST'),
-          'port' => getenv('PANTHEON_INDEX_PORT'),
-          'path' => getenv('PANTHEON_INDEX_PATH'),
-          'core' => getenv('PANTHEON_INDEX_CORE'),
-          'schema' => getenv('PANTHEON_INDEX_SCHEMA'),
-          'solr_version' => '8',
-      ]);
+    return array_merge(
+      parent::defaultConfiguration(),
+      self::getPlatformConfig(),
+      [
+        'solr_version' => '8',
+        'skip_schema_check' => TRUE,
+      ]
+    );
   }
 
   /**
@@ -123,10 +177,29 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
         array $form,
         FormStateInterface $form_state
     ) {
+    $form = parent::buildConfigurationForm($form, $form_state);
+
+    $fields = [
+      'timeout',
+      SolrConnectorInterface::INDEX_TIMEOUT,
+      SolrConnectorInterface::OPTIMIZE_TIMEOUT,
+      SolrConnectorInterface::FINALIZE_TIMEOUT,
+      'commit_within',
+    ];
+    $form = array_filter(
+      $form,
+      function ($field_name) use ($fields) {
+        return in_array($field_name, $fields, TRUE);
+      },
+      ARRAY_FILTER_USE_KEY
+    );
+
     $form['notice'] = [
-          '#markup' =>
-              "<h3>All options are configured using environment variables on Pantheon.io's custom platform</h3>",
-      ];
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => $this->t("Other options are configured using environment variables on Pantheon.io's custom platform"),
+    ];
+
     return $form;
   }
 
@@ -156,7 +229,35 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
         array &$form,
         FormStateInterface $form_state
     ) {
-    $this->setConfiguration($form_state->getValues());
+    $configuration = array_merge($this->defaultConfiguration(), $form_state->getValues());
+
+    $this->setConfiguration($configuration);
+
+    // Exclude Platform configs.
+    foreach (array_keys(self::getPlatformConfig()) as $key) {
+      unset($this->configuration[$key]);
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function adjustTimeout(int $seconds, string $timeout = self::QUERY_TIMEOUT, ?Endpoint &$endpoint = NULL): int {
+    $this->connect();
+
+    if (!$endpoint) {
+      $endpoint = $this->solr->getEndpoint();
+    }
+
+    $previous_timeout = $endpoint->getOption($timeout);
+    $options = $endpoint->getOptions();
+    $options[$timeout] = $seconds;
+    $endpoint = new PantheonEndpoint($options, \Drupal::entityTypeManager());
+
+    return $previous_timeout;
   }
 
   /**
@@ -165,8 +266,8 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
    * @return string
    *   The endpoint name.
    */
-  public function getDefaultEndpoint() {
-    return PantheonEndpoint::$DEFAULT_NAME;
+  public static function getDefaultEndpoint() {
+    return PantheonEndpoint::DEFAULT_NAME;
   }
 
   /**
@@ -190,7 +291,7 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
       $indexStats = $indexResponse['index'] ?? [];
     }
     catch (\Exception $e) {
-      $this->container->get('messenger')->addError(
+      $this->messenger->addError(
         $this->t('Unable to get stats from server!')
       );
     }
@@ -234,8 +335,7 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
             $indexStats['numDocs'] ?? $this->t('No information available.');
 
     $summary['@autocommit_time_seconds'] = $max_time / 1000;
-    $summary['@autocommit_time'] = $this->container
-      ->get('date.formatter')
+    $summary['@autocommit_time'] = $this->dateFormatter
       ->formatInterval($max_time / 1000);
     $summary['@deletes_total'] =
             (
@@ -319,13 +419,6 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
    * {@inheritdoc}
    */
   public function getFile($file = NULL) {
-    /*$query = $this->solr->createApi([
-          'handler' => 'admin/file',
-      ]);
-    if ($file) {
-      $query->addParam('file', $file);
-    }*/
-
     $query = [
       'action' => 'VIEW',
     ];
@@ -335,8 +428,6 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
     return $this->pantheonGuzzle->get('admin/file', [
       'query' => $query,
     ]);
-
-    //return $this->execute($query)->getResponse();
   }
 
   /**
@@ -364,7 +455,7 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
    * @return object|\Solarium\Client|null
    */
   protected function createClient(array &$configuration) {
-    return $this->container->get('search_api_pantheon.solarium_client');
+    return $this->solariumClient;
   }
 
   /**
@@ -374,8 +465,7 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
    */
   protected function getStatsQuery(string $handler) {
     return json_decode(
-          $this->container
-            ->get('search_api_pantheon.pantheon_guzzle')
+          $this->pantheonGuzzle
             ->get(
                   $handler,
                   [
