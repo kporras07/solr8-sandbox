@@ -3976,12 +3976,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pantheon-systems/search_api_pantheon.git",
-                "reference": "989992ac95f11f918afb7759895d5dd5859522bb"
+                "reference": "b9558df35d2c2fd5e0e089cd2a33406944c8fa60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/989992ac95f11f918afb7759895d5dd5859522bb",
-                "reference": "989992ac95f11f918afb7759895d5dd5859522bb",
+                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/b9558df35d2c2fd5e0e089cd2a33406944c8fa60",
+                "reference": "b9558df35d2c2fd5e0e089cd2a33406944c8fa60",
                 "shasum": ""
             },
             "require": {
@@ -4029,7 +4029,7 @@
                 "issues": "https://github.com/pantheon-systems/search_api_pantheon/issues",
                 "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/force-cleanup-command"
             },
-            "time": "2022-06-08T22:55:24+00:00"
+            "time": "2022-06-08T22:59:07+00:00"
         },
         {
             "name": "pantheon-upstreams/upstream-configuration",
