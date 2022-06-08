@@ -14,7 +14,8 @@
         },
         {
             "type": "path",
-            "url": "modules/search_api_pantheon"
+            "url": "modules/search_api_pantheon",
+            "symlink": false
         }
     ],
     "require": {
