@@ -134,8 +134,8 @@ class Query extends DrushCommands {
     // @todo Improve.
     $server = Server::load($server_id);
 
-    $connector = $server->getSolrConnector();
     $backend = $server->getBackend();
+    $connector = $backend->getSolrConnector();
 
     $properties['status'] = TRUE;
     $properties['read_only'] = FALSE;
