@@ -11,6 +11,10 @@
         {
             "type": "path",
             "url": "upstream-configuration"
+        },
+        {
+            "type": "path",
+            "url": "modules/search_api_pantheon"
         }
     ],
     "require": {
@@ -21,7 +25,7 @@
         "drupal/devel": "^4.1",
         "drush/drush": "^10",
         "pantheon-systems/drupal-integrations": "^9",
-        "pantheon-systems/search_api_pantheon": "dev-force-cleanup-command",
+        "pantheon-systems/search_api_pantheon": "8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version"
     },
     "require-dev": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aad949cfd0a9d47799711ca67fab174a",
+    "content-hash": "6729d4510ad0b01eefbaaaedbcaa71ab",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3972,17 +3972,11 @@
         },
         {
             "name": "pantheon-systems/search_api_pantheon",
-            "version": "dev-force-cleanup-command",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pantheon-systems/search_api_pantheon.git",
-                "reference": "63b5b770f6852c986b6ec4a738e5c7235e58c0c7"
-            },
+            "version": "8.x-dev",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/63b5b770f6852c986b6ec4a738e5c7235e58c0c7",
-                "reference": "63b5b770f6852c986b6ec4a738e5c7235e58c0c7",
-                "shasum": ""
+                "type": "path",
+                "url": "modules/search_api_pantheon",
+                "reference": "7ee4df96eea43d07ee4f7ffaaa39a5c98c636817"
             },
             "require": {
                 "drupal/search_api_solr": "^4.2",
@@ -4020,16 +4014,40 @@
                     }
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Drupal\\search_api_pantheon\\": "src/",
+                    "Drupal\\search_api_pantheon\\tests\\": "tests/",
+                    "Drupal\\search_api\\": "vendor/drupal/search_api/src/",
+                    "Drupal\\search_api_solr\\": "vendor/drupal/search_api_solr/src/"
+                }
+            },
+            "scripts": {
+                "code:test": [
+                    "vendor/bin/phpunit -c ./phpunit.xml"
+                ],
+                "code:fix": [
+                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
+                    "vendor/bin/phpcbf . --ignore=RoboFile.php"
+                ],
+                "code:lint": [
+                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
+                    "vendor/bin/phpcs --ignore=RoboFile.php . "
+                ],
+                "pre-commit": [
+                    "composer validate --strict",
+                    "@code:fix",
+                    "@code:lint",
+                    "@code:test"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Connection module for Pantheon Search (solr 8)",
-            "support": {
-                "issues": "https://github.com/pantheon-systems/search_api_pantheon/issues",
-                "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/force-cleanup-command"
-            },
-            "time": "2022-06-08T23:29:39+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "pantheon-upstreams/upstream-configuration",
