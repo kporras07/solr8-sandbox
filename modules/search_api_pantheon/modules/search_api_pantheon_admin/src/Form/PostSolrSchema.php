@@ -52,9 +52,15 @@ class PostSolrSchema extends FormBase {
     $form['path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Path to config files to post'),
-      '#description' => $this->t('Path to the config files to post. This should be a directory containing the XML files to post. Leave empty to use search_api_solr defaults.'),
+      '#description' => $this->t('Path to the config files to post. This should be a directory containing the configuration files to post. Leave empty to use search_api_solr defaults.'),
       '#default_value' => '',
       '#required' => FALSE,
+    ];
+
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Post Schema'),
     ];
 
     return $form;
