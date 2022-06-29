@@ -23,6 +23,13 @@ class PostSolrSchema extends FormBase {
   protected SchemaPoster $schemaPoster;
 
   /**
+   * Search api server.
+   *
+   * @var \Drupal\search_api\ServerInterface
+   */
+  protected ServerInterface $server;
+
+  /**
    * Constructs a new EntityController.
    */
   public function __construct(SchemaPoster $schemaPoster) {
@@ -49,6 +56,8 @@ class PostSolrSchema extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, ServerInterface $search_api_server = NULL) {
+    $this->server = $search_api_server;
+
     $form['path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Path to config files to post'),
@@ -75,7 +84,7 @@ class PostSolrSchema extends FormBase {
     if ($path) {
 
     }
-    $message = $this->schemaPoster->postSchema($search_api_server->id(), $files);
+    $message = $this->schemaPoster->postSchema($this->server->id(), $files);
     $this->messenger()->${$message[0]}($message[1]);
   }
 
