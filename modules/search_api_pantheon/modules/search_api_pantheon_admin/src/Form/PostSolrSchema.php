@@ -81,16 +81,18 @@ class PostSolrSchema extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $path = $form_state->getValue('path');
-    if (!empty($path) && !is_dir($path)) {
-      $form_state->setErrorByName('path', $this->t('The path %path is not a directory.', ['%path' => $path]));
-      return;
-    }
-    $finder = new finder();
-    // Only work with direct children.
-    $finder->depth('== 0');
-    $finder->files()->in($path);
-    if (!$finder->hasResults()) {
-      $form_state->setErrorByName('path', $this->t('The path %path does not contain any files.', ['%path' => $path]));
+    if ($path) {
+      if (!is_dir($path)) {
+        $form_state->setErrorByName('path', $this->t('The path %path is not a directory.', ['%path' => $path]));
+        return;
+      }
+      $finder = new finder();
+      // Only work with direct children.
+      $finder->depth('== 0');
+      $finder->files()->in($path);
+      if (!$finder->hasResults()) {
+        $form_state->setErrorByName('path', $this->t('The path %path does not contain any files.', ['%path' => $path]));
+      }
     }
   }
 
