@@ -83,7 +83,7 @@ class SchemaPoster implements LoggerAwareInterface {
     // PANTHEON Environment.
     if (isset($_ENV['PANTHEON_ENVIRONMENT'])) {
       if (!$files) {
-        $files = $this->getDefaultFiles();
+        $files = $this->getSolrFiles($server_id);
       }
       $response = $this->uploadSchemaFiles($files);
     }
