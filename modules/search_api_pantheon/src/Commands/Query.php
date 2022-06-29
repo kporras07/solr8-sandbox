@@ -122,32 +122,27 @@ class Query extends DrushCommands {
    *
    * @command search-api-pantheon:force-cleanup
    *
-   *
    * @aliases sapfc
    *
    * @throws \Drupal\search_api_solr\SearchApiSolrException
-   * @throws \JsonException
    * @throws \Exception
    */
   public function forceServerClean($server_id = 'pantheon_solr8') {
 
-    // @todo Improve.
     $server = Server::load($server_id);
-
     $backend = $server->getBackend();
     $connector = $backend->getSolrConnector();
 
     $properties['status'] = TRUE;
     $properties['read_only'] = FALSE;
-    foreach ($this->getIndexes($properties) as $index) {
-      // Since the index ID we use for indexing can contain arbitrary
-      // prefixes, we have to escape it for use in the query.
-      $index_id = $backend->queryHelper->escapeTerm($this->getTargetedIndexId($index));
-      $query = '+index_id:' . $index_id;
+    foreach ($server->getIndexes($properties) as $index) {
+      // We are sure this server is only available to this env so it is safe
+      // to delete all of the server contents.
+      $query = '*:*';
 
       $update_query = $connector->getUpdateQuery();
       $update_query->addDeleteQuery($query);
-      $connector->update($update_query, $this->getCollectionEndpoint($index));
+      $connector->update($update_query, $backend->getCollectionEndpoint($index));
       \Drupal::state()->set('search_api_solr.' . $index->id() . '.last_update', \Drupal::time()->getCurrentTime());
     }
 

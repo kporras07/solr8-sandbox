@@ -1,6 +1,8 @@
 # Search API Pantheon version 8.0 (for solr 8 & Drupal 8/9)
 
 [![Search API Pantheon](https://github.com/pantheon-systems/search_api_pantheon/actions/workflows/ci.yml/badge.svg?branch=8.x)](https://github.com/pantheon-systems/search_api_pantheon/actions/workflows/ci.yml)
+[![Limited Availability](https://img.shields.io/badge/Pantheon-Limited_Availability-yellow?logo=pantheon&color=FFDC28)](https://pantheon.io/docs/oss-support-levels#limited-availability)
+
 
 ![Solr at pantheon diagram](docs/diagram.svg "Solr at pantheon")
 
@@ -223,8 +225,12 @@ with the concept usage in a Solr context:
 
 # TROUBLESHOOTING
 
-* `drush search_api_pantheon:diagnose` (`sapd`) The DIAGNOSE command will check the various pieces of the Search API install
+* `drush search-api-pantheon:diagnose` (`sapd`) The DIAGNOSE command will check the various pieces of the Search API install
   and throw errors on the pieces that are not working. This command will develop further as the module nears general availability.
 
-* `drush search_api_pantheon:select` (`saps`) This command will run the given query against Solr server. It's recommended to use
+* `drush search-api-pantheon:select` (`saps`) This command will run the given query against Solr server. It's recommended to use
   `?debug=true` in any Solr page to get a good query to pass to this command to debug results.
+
+
+* `drush search-api-pantheon:force-cleanup` (`sapfc`) This command will delete all of the contents for the given
+  Solr server (no matter if hash or index_id have changed).
