@@ -49,10 +49,13 @@ class PostSolrSchema extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, ServerInterface $search_api_server = NULL) {
-    $messages = $this->schemaPoster->postSchema($search_api_server->id());
-    $form['results'] = [
-          '#markup' => implode('<br>', $messages),
-      ];
+    $form['path'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Path to config files to post'),
+      '#description' => $this->t('Path to the config files to post. This should be a directory containing the XML files to post. Leave empty to use search_api_solr defaults.'),
+      '#default_value' => '',
+      '#required' => FALSE,
+    ];
 
     return $form;
   }
@@ -61,6 +64,13 @@ class PostSolrSchema extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $path = $form_state->getValue('path');
+    $files = [];
+    if ($path) {
+
+    }
+    $message = $this->schemaPoster->postSchema($search_api_server->id(), $files);
+    $this->messenger()->${$message[0]}($message[1]);
   }
 
 }
