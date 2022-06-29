@@ -86,6 +86,8 @@ class PostSolrSchema extends FormBase {
       return;
     }
     $finder = new finder();
+    // Only work with direct children.
+    $finder->depth('== 0');
     $finder->files()->in($path);
     if (!$finder->hasResults()) {
       $form_state->setErrorByName('path', $this->t('The path %path does not contain any files.', ['%path' => $path]));
@@ -101,6 +103,8 @@ class PostSolrSchema extends FormBase {
     $files = [];
     if ($path) {
       $finder = new finder();
+      // Only work with direct children.
+      $finder->depth('== 0');
       $finder->files()->in($path);
       foreach ($finder as $file) {
         $files[$file->getfilename()] = $file->getContents();
