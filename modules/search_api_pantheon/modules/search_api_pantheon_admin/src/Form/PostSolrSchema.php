@@ -85,7 +85,25 @@ class PostSolrSchema extends FormBase {
 
     }
     $message = $this->schemaPoster->postSchema($this->server->id(), $files);
-    $this->messenger()->{$message[0]}($message[1]);
+    $method = $this->getMessageFunction($message[0]);
+    $this->messenger()->{$method}($message[1]);
+  }
+
+  /**
+   * Get the right function to call based on the message type.
+   */
+  protected function getMessageFunction(string $type) {
+    $functions = [
+      'info' => 'addStatus',
+      'error' => 'addError',
+    ];
+    if (isset($functions[$type])) {
+      return $functions[$type];
+    }
+    else {
+      $this->messenger()->addWarning(t('Unknown message type: @type', ['@type' => $message[0]]));
+      return 'addStatus';
+    }
   }
 
 }
