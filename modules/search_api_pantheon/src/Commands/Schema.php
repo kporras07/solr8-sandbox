@@ -53,11 +53,14 @@ class Schema extends DrushCommands {
   /**
    * Search_api_pantheon:postSchema.
    *
-   * @usage search_api_pantheon:postSchema {$server_id}
+   * @usage search-api-pantheon:postSchema [server_id] [path]
    *   Post the latest schema to the given Server.
    *   Default server ID = pantheon_solr8.
+   *   Default path = empty (build files using search_api_solr mechanism).
    *
-   * @command search-api-pantheon:postSchema ${$server_id} ${$path}
+   * @command search-api-pantheon:postSchema
+   * @param $server_id Server id to post schema for.
+   * @param $path Path to schema files (Leave empty to use default schema).
    * @aliases sapps
    */
   public function postSchema(?string $server_id = NULL, ?string $path = NULL) {
