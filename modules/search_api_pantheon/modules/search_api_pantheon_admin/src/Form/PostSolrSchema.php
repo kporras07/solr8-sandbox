@@ -85,7 +85,7 @@ class PostSolrSchema extends FormBase {
 
     }
     $message = $this->schemaPoster->postSchema($this->server->id(), $files);
-    $this->messenger()->${$message[0]}($message[1]);
+    $this->messenger()->{$message[0]}($message[1]);
   }
 
 }
