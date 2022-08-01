@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6729d4510ad0b01eefbaaaedbcaa71ab",
+    "content-hash": "a14a02ee192da71cd6e9fd8d53f8448d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3973,10 +3973,16 @@
         {
             "name": "pantheon-systems/search_api_pantheon",
             "version": "8.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pantheon-systems/search_api_pantheon.git",
+                "reference": "bf3bfc8b96d43b10989103d5c3d781a61d867722"
+            },
             "dist": {
-                "type": "path",
-                "url": "modules/search_api_pantheon",
-                "reference": "7ee4df96eea43d07ee4f7ffaaa39a5c98c636817"
+                "type": "zip",
+                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/bf3bfc8b96d43b10989103d5c3d781a61d867722",
+                "reference": "bf3bfc8b96d43b10989103d5c3d781a61d867722",
+                "shasum": ""
             },
             "require": {
                 "drupal/search_api_solr": "^4.2",
@@ -3988,7 +3994,8 @@
                 "kint-php/kint": "^4.1",
                 "php": ">=7.4",
                 "php-http/guzzle6-adapter": "^2.0",
-                "psr/event-dispatcher": "^1.0"
+                "psr/event-dispatcher": "^1.0",
+                "symfony/finder": "^4|^5"
             },
             "require-dev": {
                 "consolidation/robo": "^3.0",
@@ -4006,6 +4013,7 @@
                 "drupal/search_api_spellcheck": "^3",
                 "kint-php/kint": "@stable"
             },
+            "default-branch": true,
             "type": "drupal-module",
             "extra": {
                 "drush": {
@@ -4014,40 +4022,16 @@
                     }
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Drupal\\search_api_pantheon\\": "src/",
-                    "Drupal\\search_api_pantheon\\tests\\": "tests/",
-                    "Drupal\\search_api\\": "vendor/drupal/search_api/src/",
-                    "Drupal\\search_api_solr\\": "vendor/drupal/search_api_solr/src/"
-                }
-            },
-            "scripts": {
-                "code:test": [
-                    "vendor/bin/phpunit -c ./phpunit.xml"
-                ],
-                "code:fix": [
-                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
-                    "vendor/bin/phpcbf . --ignore=RoboFile.php"
-                ],
-                "code:lint": [
-                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
-                    "vendor/bin/phpcs --ignore=RoboFile.php . "
-                ],
-                "pre-commit": [
-                    "composer validate --strict",
-                    "@code:fix",
-                    "@code:lint",
-                    "@code:test"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Connection module for Pantheon Search (solr 8)",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/pantheon-systems/search_api_pantheon/issues",
+                "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/8.0.1"
+            },
+            "time": "2022-07-12T20:37:17+00:00"
         },
         {
             "name": "pantheon-upstreams/upstream-configuration",
@@ -4967,16 +4951,16 @@
         },
         {
             "name": "solarium/solarium",
-            "version": "6.2.3",
+            "version": "6.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/solariumphp/solarium.git",
-                "reference": "f91185d07d9d3f40ef92810e182e621c51635e8b"
+                "reference": "fcec5684ee3f2d73a8f06a9fbd0e25d2537e1ab2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/f91185d07d9d3f40ef92810e182e621c51635e8b",
-                "reference": "f91185d07d9d3f40ef92810e182e621c51635e8b",
+                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/fcec5684ee3f2d73a8f06a9fbd0e25d2537e1ab2",
+                "reference": "fcec5684ee3f2d73a8f06a9fbd0e25d2537e1ab2",
                 "shasum": ""
             },
             "require": {
@@ -4985,7 +4969,7 @@
                 "psr/event-dispatcher": "^1.0",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.0",
-                "symfony/event-dispatcher-contracts": "^1.0 || ^2.0"
+                "symfony/event-dispatcher-contracts": "^1.0 || ^2.0 || ^3.0"
             },
             "require-dev": {
                 "escapestudios/symfony2-coding-standard": "^3.11",
@@ -4993,11 +4977,11 @@
                 "nyholm/psr7": "^1.2",
                 "php-http/guzzle7-adapter": "^0.1",
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^0.12",
-                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
                 "phpunit/phpunit": "^9.5",
                 "roave/security-advisories": "dev-master",
-                "symfony/event-dispatcher": "^4.3 || ^5.0"
+                "symfony/event-dispatcher": "^4.3 || ^5.0 || ^6.0"
             },
             "type": "library",
             "autoload": {
@@ -5024,9 +5008,9 @@
             ],
             "support": {
                 "issues": "https://github.com/solariumphp/solarium/issues",
-                "source": "https://github.com/solariumphp/solarium/tree/6.2.3"
+                "source": "https://github.com/solariumphp/solarium/tree/6.2.4"
             },
-            "time": "2022-01-31T15:37:35+00:00"
+            "time": "2022-06-30T10:48:47+00:00"
         },
         {
             "name": "stack/builder",
@@ -11708,5 +11692,5 @@
     "platform-overrides": {
         "php": "7.4"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
