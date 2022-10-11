@@ -31,6 +31,8 @@
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
+            "ls /srv/includes/src/Pantheon/Internal",
+            "ls /srv/includes/src/Pantheon/Internal/CustomerSecrets",
             "php ./web/secrets.php"
         ]
     },
