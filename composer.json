@@ -36,7 +36,6 @@
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
-            "ls ~/certs/",
             "ls /tmp/certs",
             "php ./web/secrets.php"
         ]
