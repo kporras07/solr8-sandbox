@@ -3,36 +3,41 @@
     "description": "Install Drupal 9 with Composer on Pantheon.",
     "type": "project",
     "license": "MIT",
-    "repositories": [
-        {
+    "repositories": {
+        "papc": {
+            "type": "vcs",
+            "url": "git@github.com:pantheon-systems/pantheon_advanced_page_cache.git"
+        },
+        "0": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        {
+        "1": {
             "type": "path",
             "url": "upstream-configuration"
         }
-    ],
+    },
     "require": {
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.7",
         "drupal/core-composer-scaffold": "^9.2",
         "drupal/core-recommended": "^9.2",
         "drupal/devel": "^4.1",
+        "drupal/pantheon_advanced_page_cache": "dev-try-fixing-tests#cead2b90e70c09ecc13e00356d46d1d68f8875b9",
         "drush/drush": "^10",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version"
     },
     "conflict": {
-            "drupal/drupal": "*"
+        "drupal/drupal": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
-            "ls /srv/includes/src/Pantheon/Internal",
-            "ls /srv/includes/src/Pantheon/Internal/CustomerSecrets",
+            "ls ~/certs/",
+            "ls /tmp/certs",
             "php ./web/secrets.php"
         ]
     },
@@ -51,16 +56,36 @@
             }
         },
         "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
-            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
-            "web/profiles/custom/{$name}": ["type:drupal-custom-profile"],
-            "web/themes/custom/{$name}": ["type:drupal-custom-theme"],
-            "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ],
+            "web/private/scripts/quicksilver/{$name}/": [
+                "type:quicksilver-script"
+            ]
         },
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
