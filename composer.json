@@ -36,8 +36,9 @@
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
+            "which php",
+            "whereis php",
             "ls /tmp/binding.pem",
-            "cat /tmp/binding.pem",
             "php ./web/secrets.php"
         ]
     },
