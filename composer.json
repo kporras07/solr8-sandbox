@@ -39,7 +39,7 @@
             "which php",
             "whereis php",
             "ls /tmp/binding.pem",
-            "php ./web/secrets.php"
+            "/php/php ./web/secrets.php"
         ]
     },
     "extra": {
