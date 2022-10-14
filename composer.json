@@ -35,14 +35,6 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "scripts": {
-        "post-install-cmd": [
-            "which php",
-            "whereis php",
-            "ls /tmp/binding.pem",
-            "/php/php ./web/secrets.php"
-        ]
-    },
     "extra": {
         "drupal-scaffold": {
             "locations": {
