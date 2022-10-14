@@ -23,11 +23,12 @@
         "drupal/core-composer-scaffold": "^9.2",
         "drupal/core-recommended": "^9.2",
         "drupal/devel": "^4.1",
-        "drupal/pantheon_advanced_page_cache": "dev-try-fixing-tests#cead2b90e70c09ecc13e00356d46d1d68f8875b9",
+        "drupal/pantheon_advanced_page_cache": "^2",
         "drush/drush": "^10",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
-        "pantheon-upstreams/upstream-configuration": "self.version"
+        "pantheon-upstreams/upstream-configuration": "self.version",
+        "phpro/grumphp": "^1.5.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -100,7 +101,8 @@
             "php": "7.4"
         },
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpro/grumphp": true
         }
     }
 }

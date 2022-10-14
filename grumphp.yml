@@ -1,0 +1,6 @@
+grumphp:
+    tasks:
+        phplint:
+            exclude: ['vendor']
+            short_open_tag: false
+            triggered_by: ['php']
