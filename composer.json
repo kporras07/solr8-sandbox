@@ -35,6 +35,28 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/ComposerScripts.php"
+        ]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "/usr/local/bin/php-site-repository-tool --version"
+        ],
+        "post-install-cmd": [
+            "DrupalComposerManaged\\ComposerScripts::postInstall"
+        ],
+        "post-update-cmd": [
+            "DrupalComposerManaged\\ComposerScripts::postInstall"
+        ],
+        "post-package-install": [
+            "DrupalComposerManaged\\ComposerScripts::postInstallPackage"
+        ],
+        "post-package-update": [
+            "DrupalComposerManaged\\ComposerScripts::postInstallPackage"
+        ]
+    },
     "extra": {
         "drupal-scaffold": {
             "locations": {
