@@ -24,7 +24,7 @@
         "drupal/core-recommended": "^9.2",
         "drupal/devel": "^4.1",
         "drupal/pantheon_advanced_page_cache": "^2",
-        "drush/drush": "^10",
+        "drush/drush": "^11",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version"
