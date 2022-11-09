@@ -32,11 +32,6 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "scripts": {
-        "pre-install-cmd": [
-            "/usr/local/bin/php-site-repository-tool --version"
-        ]
-    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
