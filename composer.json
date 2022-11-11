@@ -23,6 +23,7 @@
         "drupal/core-composer-scaffold": "^9.2",
         "drupal/core-recommended": "^9.2",
         "drupal/devel": "^4.1",
+        "drupal/jsonapi_search_api": "^1.0@RC",
         "drupal/pantheon_advanced_page_cache": "^2",
         "drush/drush": "^11",
         "pantheon-systems/drupal-integrations": "^9",
