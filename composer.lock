@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76c837b9a55a015c932d72f2e64206ca",
+    "content-hash": "b234d658d8b36c874fcd343a5bd91f98",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2553,6 +2553,40 @@
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "chat": "https://drupalchat.me/channel/search"
             }
+        },
+        {
+            "name": "drupal/webp",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://kporras07@bitbucket.org/kporras07/webp.git",
+                "reference": "33fb22624108c6c6d173a20cb001ce09d0ea00d1"
+            },
+            "require": {
+                "ext-gd": "*"
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Bart Vanhoutte",
+                    "email": "bart@croquemonsieur.be",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Generates WebP copies of image style derivatives.",
+            "homepage": "https://www.drupal.org/project/webp",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/webp",
+                "source": "http://cgit.drupalcode.org/webp"
+            },
+            "time": "2022-01-15T12:43:11+00:00"
         },
         {
             "name": "drush/drush",
@@ -8021,6 +8055,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/jsonapi_search_api": 5,
+        "drupal/webp": 20,
         "pantheon-systems/search_api_pantheon": 20,
         "pantheon-upstreams/upstream-configuration": 20
     },
