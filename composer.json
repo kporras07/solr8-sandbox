@@ -1,16 +1,12 @@
 {
     "name": "pantheon-upstreams/drupal-project",
-    "description": "Install Drupal 9 with Composer on Pantheon",
+    "description": "Install Drupal 9 with Composer on Pantheon.",
     "type": "project",
     "license": "MIT",
     "repositories": {
         "webp": {
             "type": "vcs",
             "url": "https://bitbucket.org/kporras07/webp.git"
-        },
-        "papc": {
-            "type": "vcs",
-            "url": "git@github.com:pantheon-systems/pantheon_advanced_page_cache.git"
         },
         "0": {
             "type": "composer",
@@ -28,8 +24,8 @@
         "drupal/core-recommended": "^9.2",
         "drupal/devel": "^4.1",
         "drupal/jsonapi_search_api": "^1.0@RC",
+        "drupal/metatag": "^1.22",
         "drupal/pantheon_advanced_page_cache": "^2",
-        "drupal/webp": "dev-8.x-1.x",
         "drush/drush": "^11",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",

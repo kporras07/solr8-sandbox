@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92d2f8ef1fbbae6d706136965fd3b923",
+    "content-hash": "46f943f747c1f84df7b599d0ef046956",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2335,6 +2335,73 @@
             }
         },
         {
+            "name": "drupal/metatag",
+            "version": "1.22.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/metatag.git",
+                "reference": "8.x-1.22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.22.zip",
+                "reference": "8.x-1.22",
+                "shasum": "045cd6a4aa5048bfd6d47584eae1210eab9ba1fa"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10",
+                "drupal/token": "^1.0"
+            },
+            "require-dev": {
+                "drupal/devel": "^4.0 || ^5.0",
+                "drupal/hal": "^9 || ^1 || ^2",
+                "drupal/metatag_dc": "*",
+                "drupal/metatag_open_graph": "*",
+                "drupal/page_manager": "^4.0",
+                "drupal/panelizer": "^4.0",
+                "drupal/redirect": "^1.0",
+                "drupal/webprofiler": "^9 || ^10",
+                "mpyw/phpunit-patch-serializable-comparison": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.22",
+                    "datestamp": "1664472988",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://www.drupal.org/node/640498/committers",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                }
+            ],
+            "description": "Manage meta tags for all entities.",
+            "homepage": "https://www.drupal.org/project/metatag",
+            "keywords": [
+                "Drupal",
+                "seo"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/metatag",
+                "issues": "https://www.drupal.org/project/issues/metatag",
+                "docs": "https://www.drupal.org/docs/8/modules/metatag"
+            }
+        },
+        {
             "name": "drupal/pantheon_advanced_page_cache",
             "version": "2.1.0",
             "source": {
@@ -2555,44 +2622,73 @@
             }
         },
         {
-            "name": "drupal/webp",
-            "version": "dev-8.x-1.x",
+            "name": "drupal/token",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
-                "url": "https://bitbucket.org/kporras07/webp.git",
-                "reference": "33fb22624108c6c6d173a20cb001ce09d0ea00d1"
+                "url": "https://git.drupalcode.org/project/token.git",
+                "reference": "8.x-1.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/kporras07/webp/get/33fb22624108c6c6d173a20cb001ce09d0ea00d1.zip",
-                "reference": "33fb22624108c6c6d173a20cb001ce09d0ea00d1",
-                "shasum": ""
+                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.11.zip",
+                "reference": "8.x-1.11",
+                "shasum": "da264b36d1f88eb0c74bf84e18e8789854f98400"
             },
             "require": {
-                "ext-gd": "*"
+                "drupal/core": "^9.2 || ^10"
             },
-            "default-branch": true,
             "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.11",
+                    "datestamp": "1659471813",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
-                    "name": "Bart Vanhoutte",
-                    "email": "bart@croquemonsieur.be",
-                    "role": "Maintainer"
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "eaton",
+                    "homepage": "https://www.drupal.org/user/16496"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
                 }
             ],
-            "description": "Generates WebP copies of image style derivatives.",
-            "homepage": "https://www.drupal.org/project/webp",
-            "keywords": [
-                "Drupal"
-            ],
+            "description": "Provides a user interface for the Token API, some missing core tokens.",
+            "homepage": "https://www.drupal.org/project/token",
             "support": {
-                "issues": "https://www.drupal.org/project/issues/webp",
-                "source": "http://cgit.drupalcode.org/webp"
-            },
-            "time": "2022-01-15T12:43:11+00:00"
+                "source": "https://git.drupalcode.org/project/token"
+            }
         },
         {
             "name": "drush/drush",
@@ -8061,7 +8157,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/jsonapi_search_api": 5,
-        "drupal/webp": 20,
         "pantheon-systems/search_api_pantheon": 20,
         "pantheon-upstreams/upstream-configuration": 20
     },
