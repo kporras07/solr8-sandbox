@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b234d658d8b36c874fcd343a5bd91f98",
+    "content-hash": "92d2f8ef1fbbae6d706136965fd3b923",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2559,8 +2559,14 @@
             "version": "dev-8.x-1.x",
             "source": {
                 "type": "git",
-                "url": "https://kporras07@bitbucket.org/kporras07/webp.git",
+                "url": "https://bitbucket.org/kporras07/webp.git",
                 "reference": "33fb22624108c6c6d173a20cb001ce09d0ea00d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/kporras07/webp/get/33fb22624108c6c6d173a20cb001ce09d0ea00d1.zip",
+                "reference": "33fb22624108c6c6d173a20cb001ce09d0ea00d1",
+                "shasum": ""
             },
             "require": {
                 "ext-gd": "*"

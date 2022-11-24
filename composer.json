@@ -6,7 +6,7 @@
     "repositories": {
         "webp": {
             "type": "vcs",
-            "url": "git@bitbucket.org:kporras07/webp.git"
+            "url": "https://bitbucket.org/kporras07/webp.git"
         },
         "papc": {
             "type": "vcs",
