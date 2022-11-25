@@ -4089,12 +4089,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pantheon-systems/customer-secrets-php-sdk.git",
-                "reference": "35bf47796a18b29f6d6bafd14c022f5b976a02b8"
+                "reference": "198062e9ec9b992cfbee9582a0804f97710ae512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/customer-secrets-php-sdk/zipball/35bf47796a18b29f6d6bafd14c022f5b976a02b8",
-                "reference": "35bf47796a18b29f6d6bafd14c022f5b976a02b8",
+                "url": "https://api.github.com/repos/pantheon-systems/customer-secrets-php-sdk/zipball/198062e9ec9b992cfbee9582a0804f97710ae512",
+                "reference": "198062e9ec9b992cfbee9582a0804f97710ae512",
                 "shasum": ""
             },
             "require-dev": {
@@ -4123,7 +4123,7 @@
                 "source": "https://github.com/pantheon-systems/customer-secrets-php-sdk/tree/cms-982-sdk",
                 "issues": "https://github.com/pantheon-systems/customer-secrets-php-sdk/issues"
             },
-            "time": "2022-11-25T20:21:03+00:00"
+            "time": "2022-11-25T20:24:55+00:00"
         },
         {
             "name": "pantheon-systems/drupal-integrations",
