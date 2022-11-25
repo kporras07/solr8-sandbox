@@ -1,5 +1,7 @@
 <?php
 
+use PantheonSystems\CustomerSecrets\CustomerSecrets;
+
 /**
  * Load services definition file.
  */
@@ -32,3 +34,7 @@ $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
 }
+
+$secrets_client = CustomerSecrets::create();
+var_dump($secrets_client)->getSecrets();
+exit();

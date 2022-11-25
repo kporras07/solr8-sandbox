@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f8515ecb3c74e3053d37e91da2a021f",
+    "content-hash": "f1a16e6967415496581133f2540d7046",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4084,6 +4084,48 @@
             "time": "2022-11-12T15:38:23+00:00"
         },
         {
+            "name": "pantheon-systems/customer-secrets-php-sdk",
+            "version": "dev-cms-982-sdk",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pantheon-systems/customer-secrets-php-sdk.git",
+                "reference": "ed605934ba12de7f3fc033453f91a17a1af8c27a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pantheon-systems/customer-secrets-php-sdk/zipball/ed605934ba12de7f3fc033453f91a17a1af8c27a",
+                "reference": "ed605934ba12de7f3fc033453f91a17a1af8c27a",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3.6",
+                "symfony/yaml": "^5",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PantheonSystems\\CustomerSecrets\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Stovall",
+                    "email": "119924+stovak@users.noreply.github.com"
+                }
+            ],
+            "description": "Supporting libraries for customer secrets project",
+            "support": {
+                "source": "https://github.com/pantheon-systems/customer-secrets-php-sdk/tree/cms-982-sdk",
+                "issues": "https://github.com/pantheon-systems/customer-secrets-php-sdk/issues"
+            },
+            "time": "2022-11-25T20:05:03+00:00"
+        },
+        {
             "name": "pantheon-systems/drupal-integrations",
             "version": "9.0.3",
             "source": {
@@ -8149,6 +8191,7 @@
     "stability-flags": {
         "drupal/jsonapi_search_api": 5,
         "drupal/pantheon_advanced_page_cache": 20,
+        "pantheon-systems/customer-secrets-php-sdk": 20,
         "pantheon-systems/search_api_pantheon": 20,
         "pantheon-upstreams/upstream-configuration": 20
     },
