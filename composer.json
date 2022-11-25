@@ -4,6 +4,10 @@
     "type": "project",
     "license": "MIT",
     "repositories": {
+        "papc": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/project/pantheon_advanced_page_cache.git"
+        },
         "webp": {
             "type": "vcs",
             "url": "https://bitbucket.org/kporras07/webp.git"
@@ -25,7 +29,7 @@
         "drupal/devel": "^4.1",
         "drupal/jsonapi_search_api": "^1.0@RC",
         "drupal/metatag": "^1.22",
-        "drupal/pantheon_advanced_page_cache": "^2",
+        "drupal/pantheon_advanced_page_cache": "bugs-5478-dev",
         "drush/drush": "^11",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46f943f747c1f84df7b599d0ef046956",
+    "content-hash": "1f8515ecb3c74e3053d37e91da2a021f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2403,17 +2403,11 @@
         },
         {
             "name": "drupal/pantheon_advanced_page_cache",
-            "version": "2.1.0",
+            "version": "dev-bugs-5478",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pantheon-systems/pantheon_advanced_page_cache.git",
-                "reference": "48a27386ea32579f54062943083a303d699c267b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/pantheon_advanced_page_cache/zipball/48a27386ea32579f54062943083a303d699c267b",
-                "reference": "48a27386ea32579f54062943083a303d699c267b",
-                "shasum": ""
+                "url": "https://git.drupalcode.org/project/pantheon_advanced_page_cache.git",
+                "reference": "9022d4e30046b5d5071bf063e7dadb9ed8351653"
             },
             "require-dev": {
                 "drupal/coder": "^8.2",
@@ -2441,10 +2435,7 @@
                     "phpunit tests --colors=always"
                 ]
             },
-            "support": {
-                "source": "https://github.com/pantheon-systems/pantheon_advanced_page_cache/tree/2.1.0"
-            },
-            "time": "2022-10-12T19:18:12+00:00"
+            "time": "2022-11-25T17:40:37+00:00"
         },
         {
             "name": "drupal/search_api",
@@ -8157,6 +8148,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/jsonapi_search_api": 5,
+        "drupal/pantheon_advanced_page_cache": 20,
         "pantheon-systems/search_api_pantheon": 20,
         "pantheon-upstreams/upstream-configuration": 20
     },
