@@ -8,10 +8,6 @@
             "type": "vcs",
             "url": "https://git.drupalcode.org/project/pantheon_advanced_page_cache.git"
         },
-        "sdk": {
-            "type": "vcs",
-            "url": "https://github.com/pantheon-systems/customer-secrets-php-sdk.git"
-        },
         "webp": {
             "type": "vcs",
             "url": "https://bitbucket.org/kporras07/webp.git"
