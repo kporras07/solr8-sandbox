@@ -35,7 +35,6 @@
         "drupal/metatag": "^1.22",
         "drupal/pantheon_advanced_page_cache": "bugs-5478-dev",
         "drush/drush": "^11",
-        "pantheon-systems/customer-secrets-php-sdk": "dev-cms-982-sdk",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version"
