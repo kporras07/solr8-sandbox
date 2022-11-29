@@ -3,7 +3,7 @@
 $files = scandir(__DIR__);
 $examples = [];
 foreach ($files as $file) {
-    if ($file === 'index.php') {
+    if ($file === 'index.php' || $file === '.' || $file === '..') {
         continue;
     }
     $lines = file(__DIR__ . '/' . $file, FILE_SKIP_EMPTY_LINES);
