@@ -1,0 +1,4 @@
+<?php
+// PHP Info
+
+phpinfo(INFO_GENERAL | INFO_CONFIGURATION | INFO_MODULES);
