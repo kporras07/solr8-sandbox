@@ -1,5 +1,5 @@
 <?php
-// Undefined array key.
+// Undefined array key
 
 $array = array();
 echo $array['key'];

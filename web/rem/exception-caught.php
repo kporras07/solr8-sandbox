@@ -11,5 +11,5 @@ try {
   $thrower = new Thrower();
   $thrower->throw();
 } catch (\Exception $e) {
-  echo "Caught exception";
+  echo "Caught exception so this won't throw anything to REM";
 }
