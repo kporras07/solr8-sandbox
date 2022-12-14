@@ -1,7 +1,7 @@
 {
     "name": "pantheon-upstreams/drupal-project",
     "description": "Install Drupal 9 with Composer on Pantheon",
-    "type": "project",
+    "type": "project"
     "license": "MIT",
     "repositories": {
         "papc": {
