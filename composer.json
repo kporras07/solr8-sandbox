@@ -46,9 +46,6 @@
         ]
     },
     "scripts": {
-        "pre-install-cmd": [
-            "/usr/local/bin/php-site-repository-tool --version"
-        ],
         "post-install-cmd": [
             "DrupalComposerManaged\\ComposerScripts::postInstall"
         ],
