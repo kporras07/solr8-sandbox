@@ -102,6 +102,18 @@
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
             "drupal/core": "-p2"
+        },
+        "composer-disable-plugin": {
+            "disablePlugins": [
+                {
+                    "packageName": "phppro/grumphp",
+                    "rules": [
+                        {
+                            "name": "isPantheon"
+                        }
+                    ],
+                }
+            ]
         }
     },
     "config": {
