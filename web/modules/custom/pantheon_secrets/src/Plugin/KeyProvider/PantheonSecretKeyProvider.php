@@ -16,7 +16,7 @@ use PantheonSystems\CustomerSecrets\CustomerSecretsClientInterface;
  *   id = "pantheon_secret",
  *   label = @Translation("Pantheon Secret"),
  *   description = @Translation("The Pantheon Secret key provider allows a key to be retrieved from a pantheon secret."),
- *   storage_method = "env",
+ *   storage_method = "pantheon_secret",
  *   key_value = {
  *     "accepted" = FALSE,
  *     "required" = FALSE
