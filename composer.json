@@ -33,6 +33,7 @@
         "drupal/devel": "^4.1",
         "drupal/jsonapi_search_api": "^1.0@RC",
         "drupal/key": "^1.16",
+        "drupal/mailsystem": "^4.4",
         "drupal/metatag": "^1.22",
         "drupal/pantheon_advanced_page_cache": "bugs-5478-dev",
         "drupal/sendgrid_api": "^1.0",
