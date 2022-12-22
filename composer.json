@@ -106,7 +106,7 @@
         "composer-disable-plugin": {
             "disablePlugins": [
                 {
-                    "packageName": "phppro/grumphp",
+                    "packageName": "phpro/grumphp",
                     "rules": [
                         {
                             "name": "isPantheon"
