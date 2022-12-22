@@ -19,6 +19,10 @@
         "1": {
             "type": "path",
             "url": "upstream-configuration"
+        },
+        "2": {
+            "type": "path",
+            "url": "composer-disable-plugin"
         }
     },
     "require": {
@@ -31,9 +35,11 @@
         "drupal/metatag": "^1.22",
         "drupal/pantheon_advanced_page_cache": "bugs-5478-dev",
         "drush/drush": "^11",
+        "kporras07/composer-disable-plugin": "*",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
-        "pantheon-upstreams/upstream-configuration": "self.version"
+        "pantheon-upstreams/upstream-configuration": "self.version",
+        "phpro/grumphp": "*"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -46,18 +52,6 @@
         ]
     },
     "scripts": {
-        "post-install-cmd": [
-            "DrupalComposerManaged\\ComposerScripts::postInstall"
-        ],
-        "post-update-cmd": [
-            "DrupalComposerManaged\\ComposerScripts::postInstall"
-        ],
-        "post-package-install": [
-            "DrupalComposerManaged\\ComposerScripts::postInstallPackage"
-        ],
-        "post-package-update": [
-            "DrupalComposerManaged\\ComposerScripts::postInstallPackage"
-        ]
     },
     "extra": {
         "drupal-scaffold": {
@@ -114,13 +108,15 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.4"
+            "php": "8.1.13"
         },
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "composer/installers": true,
             "cweagans/composer-patches": true,
-            "drupal/core-composer-scaffold": true
+            "drupal/core-composer-scaffold": true,
+            "kporras07/composer-disable-plugin": true,
+            "phpro/grumphp": true
         }
     }
 }
