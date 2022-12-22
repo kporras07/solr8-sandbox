@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b6a3102efcc5ca14d381e53f9b55f29",
+    "content-hash": "99a8e43d112e50678112d6d74498cca4",
     "packages": [
         {
             "name": "amphp/amp",
@@ -5215,6 +5215,81 @@
             "time": "2022-01-27T09:35:39+00:00"
         },
         {
+            "name": "pantheon-systems/customer-secrets-php-sdk",
+            "version": "dev-cms-982",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:pantheon-systems/customer-secrets-php-sdk.git",
+                "reference": "aab183772d6ac95621d6d0366e90ba25d8871e88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pantheon-systems/customer-secrets-php-sdk/zipball/aab183772d6ac95621d6d0366e90ba25d8871e88",
+                "reference": "aab183772d6ac95621d6d0366e90ba25d8871e88",
+                "shasum": ""
+            },
+            "require-dev": {
+                "g1a/composer-test-scenarios": "^3.2",
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3.6",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "scenarios": {
+                    "php7.4": {
+                        "config": {
+                            "platform": {
+                                "php": "7.4.33"
+                            }
+                        }
+                    },
+                    "php8.1": {
+                        "config": {
+                            "platform": {
+                                "php": "8.1.13"
+                            }
+                        }
+                    },
+                    "php8.2": {
+                        "config": {
+                            "platform": {
+                                "php": "8.2.0"
+                            }
+                        }
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PantheonSystems\\CustomerSecrets\\": "src/"
+                }
+            },
+            "scripts": {
+                "cs": [
+                    "vendor/bin/phpcs --standard=PSR2 src tests"
+                ],
+                "test": [
+                    "XDEBUG_MODE=coverage vendor/bin/phpunit --colors=always -c ./phpunit.xml --debug --do-not-cache-result --verbose --stop-on-failure"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Stovall",
+                    "email": "119924+stovak@users.noreply.github.com"
+                }
+            ],
+            "description": "Supporting libraries for customer secrets project",
+            "support": {
+                "source": "https://github.com/pantheon-systems/customer-secrets-php-sdk/tree/cms-982",
+                "issues": "https://github.com/pantheon-systems/customer-secrets-php-sdk/issues"
+            },
+            "time": "2022-12-21T20:04:33+00:00"
+        },
+        {
             "name": "pantheon-systems/drupal-integrations",
             "version": "9.0.4",
             "source": {
@@ -9743,6 +9818,7 @@
     "stability-flags": {
         "drupal/jsonapi_search_api": 5,
         "drupal/pantheon_advanced_page_cache": 20,
+        "pantheon-systems/customer-secrets-php-sdk": 20,
         "pantheon-systems/search_api_pantheon": 20,
         "pantheon-upstreams/upstream-configuration": 20
     },

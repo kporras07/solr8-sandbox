@@ -23,6 +23,10 @@
         "2": {
             "type": "path",
             "url": "composer-disable-plugin"
+        },
+        "3": {
+            "type": "vcs",
+            "url": "https://github.com/pantheon-systems/customer-secrets-php-sdk.git"
         }
     },
     "require": {
@@ -40,6 +44,7 @@
         "drupal/sendgrid_mailer": "^1.1",
         "drush/drush": "^11",
         "kporras07/composer-disable-plugin": "*",
+        "pantheon-systems/customer-secrets-php-sdk": "dev-cms-982",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version",
