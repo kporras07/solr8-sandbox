@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\key\Plugin\KeyProvider;
+namespace Drupal\pantheon_secrets\Plugin\KeyProvider;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\key\Plugin\KeyProviderBase;
