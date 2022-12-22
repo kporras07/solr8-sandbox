@@ -100,17 +100,19 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
    */
   public function getKeyValue(KeyInterface $key) {
     $secret_name = $this->configuration['secret_name'];
-    $secret_value = $this->secretsClient->getSecret($secret_name);
+    $secret = $this->secretsClient->getSecret($secret_name);
 
-    if (!$secret_value) {
+    if (!$secret) {
       return NULL;
     }
 
+    $secret_value = $secret->getValue();
+
     if (isset($this->configuration['strip_line_breaks']) && $this->configuration['strip_line_breaks'] == TRUE) {
-      $key_value = rtrim($key_value, "\n\r");
+      $secret_value = rtrim($secret_value, "\n\r");
     }
 
-    return $key_value;
+    return $secret_value;
   }
 
 }
