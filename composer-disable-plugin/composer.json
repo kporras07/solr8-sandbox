@@ -1,0 +1,30 @@
+{
+    "name": "kporras07/composer-disable-plugin",
+    "description": "Disable plugins under specific conditions",
+    "type": "composer-plugin",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kporras07\\ComposerDisablePlugin\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "composer-plugin-api": "^2.2"
+    },
+    "scripts": {
+        "cs": [
+            "vendor/bin/phpcs --standard=PSR2 src tests"
+        ],
+        "test": [
+          "XDEBUG_MODE=coverage vendor/bin/phpunit --colors=always -c ./phpunit.xml --debug --do-not-cache-result --verbose --stop-on-failure"
+        ]
+    },
+    "extra": {
+        "class": "Kporras07\\ComposerDisablePlugin\\Plugin\\ComposerDisablePlugin"
+    }
+}
