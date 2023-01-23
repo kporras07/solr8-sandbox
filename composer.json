@@ -4,6 +4,10 @@
     "type": "project",
     "license": "MIT",
     "repositories": {
+        "admin_toolbar": {
+            "type": "vcs",
+            "url": "https://github.com/namespacebrian/admin_toolbar"
+        },
         "papc": {
             "type": "vcs",
             "url": "https://git.drupalcode.org/project/pantheon_advanced_page_cache.git"
@@ -48,6 +52,7 @@
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version",
+        "pantheon/admin_toolbar": "^1.02",
         "phpro/grumphp": "*"
     },
     "conflict": {
