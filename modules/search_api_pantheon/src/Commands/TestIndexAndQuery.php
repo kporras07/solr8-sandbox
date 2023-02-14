@@ -92,8 +92,8 @@ class TestIndexAndQuery extends DrushCommands {
       $value = Yaml::parseFile($module_root . '/.ci/config/search_api.index.solr_index.yml');
 
       // Update index from config.
-      if (isset($value['datasource_settings']["'entity:node'"])) {
-        unset($value['datasource_settings']["'entity:node'"]);
+      if (isset($value['datasource_settings']["entity:node"])) {
+        unset($value['datasource_settings']["entity:node"]);
       }
       $value['datasource_settings']['solr_document'] = [
         'id_field' => '_root_',
@@ -240,7 +240,8 @@ class TestIndexAndQuery extends DrushCommands {
     // Add it to the update query and also add a commit.
     $query = new UpdateQuery();
     $query->addDocument($document);
-    //$query->addCommit();
+    // Make a soft commit.
+    $query->addCommit(TRUE);
     // Run it, the result should be a new document in the Solr index.
     return $this->solr->update($query);
   }
