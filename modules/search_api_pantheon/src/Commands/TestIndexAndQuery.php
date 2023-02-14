@@ -71,7 +71,7 @@ class TestIndexAndQuery extends DrushCommands {
    * @throws \Exception
    */
   public function testIndexAndQuery() {
-    $index_id = NULL;
+    $index = NULL;
     try {
       $drupal_root = \DRUPAL_ROOT;
 
@@ -90,6 +90,19 @@ class TestIndexAndQuery extends DrushCommands {
       $this->logger()->notice("Creating temporary index...");
       $module_root = \Drupal::service('extension.list.module')->getPath('search_api_pantheon');
       $value = Yaml::parseFile($module_root . '/.ci/config/search_api.index.solr_index.yml');
+
+      // Update index from config.
+      if (isset($value['datasource_settings']["'entity:node'"])) {
+        unset($value['datasource_settings']["'entity:node'"]);
+      }
+      $value['datasource_settings']['solr_document'] = [
+        'id_field' => '_root_',
+        'request_handler' => '',
+        'default_query' => '*:*',
+        'label_field' => '',
+        'language_field' => '',
+        'url_field' => '',
+      ];
       $index_id = $value['id'] . '_' . uniqid();
       $value['id'] =  $index_id;
       $filesystem = \Drupal::service('file_system');
@@ -99,17 +112,19 @@ class TestIndexAndQuery extends DrushCommands {
       file_put_contents($directory . '/search_api.index.' . $index_id . '.yml', $yaml);
       $config_source = new FileStorage($directory);
       \Drupal::service('config.installer')->installOptionalConfig($config_source);
+      $index = Index::load($index_id);
       $this->logger()->notice("Temporary index created.");
 
 
-      $indexSingleItemQuery = $this->indexSingleItem();
-      $this->logger()->notice('Solr Update index with one document Response: {code} {reason}', [
+      $indexSingleItemQuery = $this->indexSingleItem($index);
+      var_dump($indexSingleItemQuery);
+      /*$this->logger()->notice('Solr Update index with one document Response: {code} {reason}', [
             'code' => $indexSingleItemQuery->getResponse()->getStatusCode(),
             'reason' => $indexSingleItemQuery->getResponse()->getStatusMessage(),
         ]);
       if ($indexSingleItemQuery->getResponse()->getStatusCode() !== 200) {
         throw new \Exception('Cannot unable to index simple item. Have you created an index for the server?');
-      }
+      }*/
 
       $indexedStats = $this->pantheonGuzzle->getQueryResult('admin/luke', [
             'query' => [
@@ -141,11 +156,10 @@ class TestIndexAndQuery extends DrushCommands {
       exit(1);
     }
     finally {
-      if ($index_id) {
+      if ($index) {
         $this->logger()->notice('Removing index {index_id}', [
-          'index_id' => $index_id,
+          'index_id' => $index->id(),
         ]);
-        $index = Index::load($index_id);
         //$index->delete();
       }
     }
@@ -185,45 +199,16 @@ class TestIndexAndQuery extends DrushCommands {
    * @return \Solarium\Core\Query\Result\ResultInterface|\Solarium\QueryType\Update\Result
    *   The result.
    */
-  protected function indexSingleItem() {
-    // Create a new document.
-    $document = new UpdateDocument();
+  protected function indexSingleItem(Index $index) {
+    $data = [
+      'id' => uniqid(),
+      'population' => 120000,
+      'name' => 'example doc',
+      'countries' => ['NL', 'UK', 'US'],
+      'dummy' => 10,
+    ];
 
-    // Set a field value as property.
-    $document->id = 15;
-
-    // Set a field value as array entry.
-    $document['population'] = 120000;
-
-    // Set a field value with the setField method, including a boost.
-    $document->setField('name', 'example doc', 3);
-
-    // Add two values to a multivalue field.
-    $document->addField('countries', 'NL');
-    $document->addField('countries', 'UK');
-    $document->addField('countries', 'US');
-
-    // example: add / remove field with methods.
-    $document->setField('dummy', 10);
-    $document->removeField('dummy');
-
-    // example: add / remove field with methods by setting NULL value.
-    $document->setField('dummy', 10);
-    // This removes the field.
-    $document->setField('dummy', NULL);
-
-    // Set a document boost value.
-    $document->setFieldBoost('name', 2.5);
-
-    // Set a field boost.
-    $document->setFieldBoost('population', 4.5);
-
-    // Add it to the update query and also add a commit.
-    $query = new UpdateQuery();
-    $query->addDocument($document);
-    $query->addCommit();
-    // Run it, the result should be a new document in the Solr index.
-    return $this->solr->update($query);
+    return $index->indexSpecificItems([$data]);
   }
 
 }
