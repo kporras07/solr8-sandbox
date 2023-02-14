@@ -87,6 +87,7 @@ class TestIndexAndQuery extends DrushCommands {
       }
 
       // Create a new random index.
+      $this->logger()->notice("Creating temporary index...");
       $module_root = \Drupal::service('extension.list.module')->getPath('search_api_pantheon');
       $value = Yaml::parseFile($module_root . '/.ci/config/search_api.index.solr_index.yml');
       $index_id = $value['id'] . '_' . uniqid();
@@ -98,7 +99,7 @@ class TestIndexAndQuery extends DrushCommands {
       file_put_contents($directory . '/search_api.index.' . $index_id . '.yml', $yaml);
       $config_source = new FileStorage($directory);
       \Drupal::service('config.installer')->installOptionalConfig($config_source);
-
+      $this->logger()->notice("Temporary index created.");
 
 
       $indexSingleItemQuery = $this->indexSingleItem();
@@ -145,7 +146,7 @@ class TestIndexAndQuery extends DrushCommands {
           'index_id' => $index_id,
         ]);
         $index = Index::load($index_id);
-        $index->delete();
+        //$index->delete();
       }
     }
     $this->logger()->notice(
