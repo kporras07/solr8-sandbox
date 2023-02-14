@@ -241,8 +241,8 @@ class TestIndexAndQuery extends DrushCommands {
     // Add it to the update query and also add a commit.
     $query = new UpdateQuery();
     $query->addDocument($document);
-    // Make a soft commit.
-    $query->addCommit(TRUE);
+    // Make a hard commit.
+    $query->addCommit();
     // Run it, the result should be a new document in the Solr index.
     return $this->solr->update($query);
   }
