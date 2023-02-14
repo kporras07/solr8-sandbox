@@ -103,6 +103,7 @@ class TestIndexAndQuery extends DrushCommands {
         'language_field' => '',
         'url_field' => '',
       ];
+      var_dump($value['datasource_settings']);
       $index_id = $value['id'] . '_' . uniqid();
       $value['id'] =  $index_id;
       $filesystem = \Drupal::service('file_system');
@@ -117,14 +118,13 @@ class TestIndexAndQuery extends DrushCommands {
 
 
       $indexSingleItemQuery = $this->indexSingleItem($index);
-      var_dump($indexSingleItemQuery);
-      /*$this->logger()->notice('Solr Update index with one document Response: {code} {reason}', [
+      $this->logger()->notice('Solr Update index with one document Response: {code} {reason}', [
             'code' => $indexSingleItemQuery->getResponse()->getStatusCode(),
             'reason' => $indexSingleItemQuery->getResponse()->getStatusMessage(),
         ]);
       if ($indexSingleItemQuery->getResponse()->getStatusCode() !== 200) {
         throw new \Exception('Cannot unable to index simple item. Have you created an index for the server?');
-      }*/
+      }
 
       $indexedStats = $this->pantheonGuzzle->getQueryResult('admin/luke', [
             'query' => [
@@ -208,7 +208,45 @@ class TestIndexAndQuery extends DrushCommands {
       'dummy' => 10,
     ];
 
-    return $index->indexSpecificItems([$data]);
+    $index->indexSpecificItems([$data]);
+    // Create a new document.
+    $document = new UpdateDocument();
+
+    // Set a field value as property.
+    $document->id = 15;
+
+    // Set a field value as array entry.
+    $document['population'] = 120000;
+
+    // Set a field value with the setField method, including a boost.
+    $document->setField('name', 'example doc', 3);
+
+    // Add two values to a multivalue field.
+    $document->addField('countries', 'NL');
+    $document->addField('countries', 'UK');
+    $document->addField('countries', 'US');
+
+    // example: add / remove field with methods.
+    $document->setField('dummy', 10);
+    $document->removeField('dummy');
+
+    // example: add / remove field with methods by setting NULL value.
+    $document->setField('dummy', 10);
+    // This removes the field.
+    $document->setField('dummy', NULL);
+
+    // Set a document boost value.
+    $document->setFieldBoost('name', 2.5);
+
+    // Set a field boost.
+    $document->setFieldBoost('population', 4.5);
+
+    // Add it to the update query and also add a commit.
+    $query = new UpdateQuery();
+    $query->addDocument($document);
+    $query->addCommit();
+    // Run it, the result should be a new document in the Solr index.
+    return $this->solr->update($query);
   }
 
 }
