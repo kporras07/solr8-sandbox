@@ -117,7 +117,7 @@ class TestIndexAndQuery extends DrushCommands {
       $this->logger()->notice("Temporary index created.");
 
 
-      $indexSingleItemQuery = $this->indexSingleItem($index);
+      $indexSingleItemQuery = $this->indexSingleItem($index->id());
       $this->logger()->notice('Solr Update index with one document Response: {code} {reason}', [
             'code' => $indexSingleItemQuery->getResponse()->getStatusCode(),
             'reason' => $indexSingleItemQuery->getResponse()->getStatusMessage(),
@@ -195,25 +195,21 @@ class TestIndexAndQuery extends DrushCommands {
 
   /**
    * Indexes a single item.
+   * 
+   * @param string $index_id
+   *   ID of index to add this item to.
    *
    * @return \Solarium\Core\Query\Result\ResultInterface|\Solarium\QueryType\Update\Result
    *   The result.
    */
-  protected function indexSingleItem(Index $index) {
-    $data = [
-      'id' => uniqid(),
-      'population' => 120000,
-      'name' => 'example doc',
-      'countries' => ['NL', 'UK', 'US'],
-      'dummy' => 10,
-    ];
-
-    $index->indexSpecificItems([$data]);
+  protected function indexSingleItem(string $index_id) {
     // Create a new document.
     $document = new UpdateDocument();
 
     // Set a field value as property.
     $document->id = 15;
+
+    $document->index_id = $index_id;
 
     // Set a field value as array entry.
     $document['population'] = 120000;
@@ -244,7 +240,7 @@ class TestIndexAndQuery extends DrushCommands {
     // Add it to the update query and also add a commit.
     $query = new UpdateQuery();
     $query->addDocument($document);
-    $query->addCommit();
+    //$query->addCommit();
     // Run it, the result should be a new document in the Solr index.
     return $this->solr->update($query);
   }
