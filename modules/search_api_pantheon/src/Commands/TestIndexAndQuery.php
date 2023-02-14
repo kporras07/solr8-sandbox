@@ -96,7 +96,7 @@ class TestIndexAndQuery extends DrushCommands {
         unset($value['datasource_settings']["entity:node"]);
       }
       $value['datasource_settings']['solr_document'] = [
-        'id_field' => '_root_',
+        'id_field' => 'id',
         'request_handler' => '',
         'default_query' => '*:*',
         'label_field' => '',
@@ -114,6 +114,7 @@ class TestIndexAndQuery extends DrushCommands {
       $config_source = new FileStorage($directory);
       \Drupal::service('config.installer')->installOptionalConfig($config_source);
       $index = Index::load($index_id);
+      $index->save();
       $this->logger()->notice("Temporary index created.");
 
 
