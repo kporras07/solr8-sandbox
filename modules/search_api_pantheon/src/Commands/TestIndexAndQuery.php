@@ -141,7 +141,6 @@ class TestIndexAndQuery extends DrushCommands {
           'numFound' => $result['response']['numFound'],
         ]);
       }
-      var_dump($result);
     }
     catch (\Exception $e) {
       \Kint::dump($e);
@@ -155,12 +154,12 @@ class TestIndexAndQuery extends DrushCommands {
     }
     finally {
       if ($index) {
-        $this->logger()->notice('Removing index {index_id}', [
+        $this->logger()->notice('Removing content and index {index_id}', [
           'index_id' => $index->id(),
         ]);
 
-        // @todo Delete index contents.
-        //$index->delete();
+        $this->deleteSingleItem('1-' . $index->id());
+        $index->delete();
       }
     }
     $this->logger()->notice(
@@ -195,7 +194,7 @@ class TestIndexAndQuery extends DrushCommands {
 
   /**
    * Indexes a single item.
-   * 
+   *
    * @param string $index_id
    *   ID of index to add this item to.
    *
@@ -207,7 +206,7 @@ class TestIndexAndQuery extends DrushCommands {
     $document = new UpdateDocument();
 
     // Set a field value as property.
-    $document->id = 15;
+    $document->id = "1-" . $index_id;
 
     $document->index_id = $index_id;
 
@@ -240,6 +239,25 @@ class TestIndexAndQuery extends DrushCommands {
     // Add it to the update query and also add a commit.
     $query = new UpdateQuery();
     $query->addDocument($document);
+    // Make a hard commit.
+    $query->addCommit();
+    // Run it, the result should be a new document in the Solr index.
+    return $this->solr->update($query);
+  }
+
+  /**
+   * Indexes a single item.
+   * 
+   * @param string $item_id
+   *   ID of the item to delete.
+   *
+   * @return \Solarium\Core\Query\Result\ResultInterface|\Solarium\QueryType\Update\Result
+   *   The result.
+   */
+  protected function deleteSingleItem(string $item_id) {
+    // Add it to the update query and also add a commit.
+    $query = new UpdateQuery();
+    $query->addDeleteQuery('id:' . $item_id);
     // Make a hard commit.
     $query->addCommit();
     // Run it, the result should be a new document in the Solr index.
