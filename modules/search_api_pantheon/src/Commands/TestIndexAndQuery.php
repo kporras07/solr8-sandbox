@@ -127,6 +127,15 @@ class TestIndexAndQuery extends DrushCommands {
         throw new \Exception('Cannot unable to index simple item. Have you created an index for the server?');
       }
 
+      $this->logger()->notice("Querying Solr for the indexed item...");
+      $result = $this->pantheonGuzzle->getQueryResult('select', [
+        'query' => [
+          'q' => 'index_id:' . $index->id(),
+          'fields' => ['id', 'index_id', 'name']
+        ],
+      ]);
+      var_dump($result);
+
       $indexedStats = $this->pantheonGuzzle->getQueryResult('admin/luke', [
             'query' => [
                 'stats' => 'true',
