@@ -103,7 +103,6 @@ class TestIndexAndQuery extends DrushCommands {
         'language_field' => '',
         'url_field' => '',
       ];
-      var_dump($value['datasource_settings']);
       $index_id = $value['id'] . '_' . uniqid();
       $value['id'] =  $index_id;
       $filesystem = \Drupal::service('file_system');
@@ -120,9 +119,9 @@ class TestIndexAndQuery extends DrushCommands {
 
       $indexSingleItemQuery = $this->indexSingleItem($index->id());
       $this->logger()->notice('Solr Update index with one document Response: {code} {reason}', [
-            'code' => $indexSingleItemQuery->getResponse()->getStatusCode(),
-            'reason' => $indexSingleItemQuery->getResponse()->getStatusMessage(),
-        ]);
+        'code' => $indexSingleItemQuery->getResponse()->getStatusCode(),
+        'reason' => $indexSingleItemQuery->getResponse()->getStatusMessage(),
+      ]);
       if ($indexSingleItemQuery->getResponse()->getStatusCode() !== 200) {
         throw new \Exception('Cannot unable to index simple item. Have you created an index for the server?');
       }
@@ -134,26 +133,15 @@ class TestIndexAndQuery extends DrushCommands {
           'fields' => ['id', 'index_id', 'name']
         ],
       ]);
-      var_dump($result);
-
-      $indexedStats = $this->pantheonGuzzle->getQueryResult('admin/luke', [
-            'query' => [
-                'stats' => 'true',
-            ],
-        ]);
-      if ($this->output()->isVerbose()) {
-        $this->logger()->notice('Solr Index Stats: {stats}', [
-              'stats' => print_r($indexedStats['index'], TRUE),
-          ]);
+      if ($result['response']['numFound'] === 1) {
+        $this->logger()->notice('We got exactly 1 result ✅');
       }
       else {
-        $this->logger()->notice('We got Solr stats ✅');
-      }
-      $beans = $this->pantheonGuzzle->getQueryResult('admin/mbeans', [
-            'query' => [
-                'stats' => 'true',
-            ],
+        $this->logger()->notice('We did not get exactly 1 result ❌ (numFound = {numFound})', [
+          'numFound' => $result['response']['numFound'],
         ]);
+      }
+      var_dump($result);
     }
     catch (\Exception $e) {
       \Kint::dump($e);
@@ -170,6 +158,8 @@ class TestIndexAndQuery extends DrushCommands {
         $this->logger()->notice('Removing index {index_id}', [
           'index_id' => $index->id(),
         ]);
+
+        // @todo Delete index contents.
         //$index->delete();
       }
     }
