@@ -47,7 +47,7 @@
         "kint-php/kint": "^4.1",
         "psr/event-dispatcher": "^1.0",
         "symfony/finder": "^4.4|^5|^6",
-        "symfony/yaml": "^4.4|^5|^6",
+        "symfony/yaml": "^4.4|^5|^6"
     },
     "require-dev": {
         "consolidation/robo": "^3.0",
@@ -55,7 +55,7 @@
         "drupal/coder": "@stable",
         "phpunit/phpunit": "@stable",
         "psy/psysh": "@stable",
-        "squizlabs/php_codesniffer": "@stable",
+        "squizlabs/php_codesniffer": "@stable"
     },
     "suggest":{
         "drupal/search_api_autocomplete": "^1",

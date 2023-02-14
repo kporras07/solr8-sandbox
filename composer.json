@@ -16,6 +16,10 @@
             "type": "vcs",
             "url": "https://bitbucket.org/kporras07/webp.git"
         },
+        "sap": {
+            "type": "path",
+            "url": "modules/search_api_pantheon"
+        },
         "0": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"

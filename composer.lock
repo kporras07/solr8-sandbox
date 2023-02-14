@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b66406fc329d5f69856b4ef521888ab",
+    "content-hash": "1199d19bc2042048d0f7ee9889eb4541",
     "packages": [
         {
             "name": "amphp/amp",
@@ -5335,16 +5335,10 @@
         {
             "name": "pantheon-systems/search_api_pantheon",
             "version": "8.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pantheon-systems/search_api_pantheon.git",
-                "reference": "4641498c836c48713d8bf7b581fb4f99fa190519"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pantheon-systems/search_api_pantheon/zipball/4641498c836c48713d8bf7b581fb4f99fa190519",
-                "reference": "4641498c836c48713d8bf7b581fb4f99fa190519",
-                "shasum": ""
+                "type": "path",
+                "url": "modules/search_api_pantheon",
+                "reference": "3977e21fb5aebf7b006ddef46f97f5e4fb237d51"
             },
             "require": {
                 "drupal/search_api_solr": "^4.2",
@@ -5356,7 +5350,8 @@
                 "kint-php/kint": "^4.1",
                 "php": ">=7.4",
                 "psr/event-dispatcher": "^1.0",
-                "symfony/finder": "^4.4|^5|^6"
+                "symfony/finder": "^4.4|^5|^6",
+                "symfony/yaml": "^4.4|^5|^6"
             },
             "require-dev": {
                 "consolidation/robo": "^3.0",
@@ -5364,8 +5359,7 @@
                 "drupal/coder": "@stable",
                 "phpunit/phpunit": "@stable",
                 "psy/psysh": "@stable",
-                "squizlabs/php_codesniffer": "@stable",
-                "symfony/yaml": "^4"
+                "squizlabs/php_codesniffer": "@stable"
             },
             "suggest": {
                 "drupal/facets": "^1.8",
@@ -5374,7 +5368,6 @@
                 "drupal/search_api_spellcheck": "^3",
                 "kint-php/kint": "@stable"
             },
-            "default-branch": true,
             "type": "drupal-module",
             "extra": {
                 "drush": {
@@ -5383,16 +5376,40 @@
                     }
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Drupal\\search_api_pantheon\\": "src/",
+                    "Drupal\\search_api_pantheon\\tests\\": "tests/",
+                    "Drupal\\search_api\\": "vendor/drupal/search_api/src/",
+                    "Drupal\\search_api_solr\\": "vendor/drupal/search_api_solr/src/"
+                }
+            },
+            "scripts": {
+                "code:test": [
+                    "vendor/bin/phpunit -c ./phpunit.xml"
+                ],
+                "code:fix": [
+                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
+                    "vendor/bin/phpcbf . --ignore=RoboFile.php"
+                ],
+                "code:lint": [
+                    "vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer",
+                    "vendor/bin/phpcs --ignore=RoboFile.php . "
+                ],
+                "pre-commit": [
+                    "composer validate --strict",
+                    "@code:fix",
+                    "@code:lint",
+                    "@code:test"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Connection module for Pantheon Search (solr 8)",
-            "support": {
-                "issues": "https://github.com/pantheon-systems/search_api_pantheon/issues",
-                "source": "https://github.com/pantheon-systems/search_api_pantheon/tree/8.x"
-            },
-            "time": "2022-12-07T13:44:40+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "pantheon-upstreams/upstream-configuration",
