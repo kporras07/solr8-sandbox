@@ -69,14 +69,14 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       //'#default_value' => $this->getConfiguration()['secret_name'],
     ];
 
-    $form['secret_name'] => [
+    $form['secret_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Secret name'),
       '#description' => $this->t('Name of the secret set in Pantheon.'),
       '#required' => TRUE,
     ];
 
-    $form['secret_value'] => [
+    $form['secret_value'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Secret value'),
       '#description' => $this->t('Value of the secret set in Pantheon.'),
