@@ -54,18 +54,46 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['secret_name'] = [
+    $form['secret'] = [
       '#type' => 'select',
-      '#title' => $this->t('Secret name'),
+      '#title' => $this->t('Select your secret'),
       '#options' => [
         'org-default-secret1' => 'Secret 1 (Org)',
         'org-live-secret2' => 'Secret 2 (Org - live)',
         'site-secret3' => 'Secret 3',
         'site-live-secret4' => 'Secret 4 (Live)',
+        'new' => 'New Secret',
       ],
       '#description' => $this->t('Name of the secret set in Pantheon.'),
       '#required' => TRUE,
       //'#default_value' => $this->getConfiguration()['secret_name'],
+    ];
+
+    $form['secret_name'] => [
+      '#type' => 'textfield',
+      '#title' => $this->t('Secret name'),
+      '#description' => $this->t('Name of the secret set in Pantheon.'),
+      '#required' => TRUE,
+    ];
+
+    $form['secret_value'] => [
+      '#type' => 'textfield',
+      '#title' => $this->t('Secret value'),
+      '#description' => $this->t('Value of the secret set in Pantheon.'),
+      '#required' => TRUE,
+    ];
+
+    $form['env_specific'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Make this secret env specific'),
+      '#description' => $this->t('Note that if the secret does not exist at the site level, it will still be created and given an empty (same?) value'),
+      '#default_value' => $this->getConfiguration()['scope_user'],
+    ];
+
+    $form['scope_user'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Allow the secret to be viewable by users later'),
+      '#default_value' => $this->getConfiguration()['scope_user'],
     ];
 
     $form['strip_line_breaks'] = [
