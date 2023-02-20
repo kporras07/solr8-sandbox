@@ -4,3 +4,10 @@ api_version: 1
 php_version: 8.1
 search:
   version: 8
+
+workflows:
+  sync_code:
+    after:
+      - type: webphp
+        description: Print hello world after deployment.
+        script: private/scripts/hello.php
