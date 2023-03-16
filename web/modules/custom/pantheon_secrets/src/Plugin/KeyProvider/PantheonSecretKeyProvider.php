@@ -52,7 +52,6 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
 
   protected function getSecretsOptions() {
     $secrets_list = $this->secretsClient->getSecrets();
-    var_dump($secrets_list);
     $options = [];
     foreach ($secrets_list as $secret) {
       $options[$secret->getName()] = $secret->getName();
