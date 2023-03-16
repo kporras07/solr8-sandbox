@@ -72,12 +72,12 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#options' => $this->getSecretsOptions(),
       '#description' => $this->t('Name of the secret set in Pantheon.'),
       '#required' => TRUE,
-      '#default_value' => $this->getConfiguration()['secret'],
-      '#ajax' => [
-        'callback' => [$this, 'refreshForm'],
-        'event' => 'change',
-        'wrapper' => 'new-secret',
-      ],
+      '#default_value' => isset($this->getConfiguration()['secret']) ? $this->getConfiguration()['secret'] : '',
+      #'#ajax' => [
+      #  'callback' => [$this, 'refreshForm'],
+      #  'event' => 'change',
+      #  'wrapper' => 'new-secret',
+      #],
     ];
 
     $form['new_secret'] = [
@@ -108,13 +108,13 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#type' => 'checkbox',
       '#title' => $this->t('Make this secret env specific'),
       '#description' => $this->t('Note that if the secret does not exist at the site level, it will still be created and given an empty (same?) value'),
-      '#default_value' => $this->getConfiguration()['scope_user'],
+      '#default_value' => FALSE,
     ];
 
     $form['new_secret']['scope_user'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Allow the secret to be viewable by users later'),
-      '#default_value' => $this->getConfiguration()['scope_user'],
+      '#default_value' => FALSE,
     ];
 
     $form['strip_line_breaks'] = [
