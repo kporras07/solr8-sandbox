@@ -94,6 +94,11 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#title' => $this->t('Secret name'),
       '#description' => $this->t('Name of the secret set in Pantheon.'),
       '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="secret"]' => ['value' => '_other'],
+        ],
+      ],
     ];
 
     $form['new_secret']['secret_value'] = [
@@ -101,6 +106,11 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#title' => $this->t('Secret value'),
       '#description' => $this->t('Value of the secret set in Pantheon.'),
       '#required' => TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="secret"]' => ['value' => '_other'],
+        ],
+      ],
     ];
 
     $form['new_secret']['env_specific'] = [
@@ -108,12 +118,22 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#title' => $this->t('Make this secret env specific'),
       '#description' => $this->t('Note that if the secret does not exist at the site level, it will still be created and given an empty (same?) value'),
       '#default_value' => FALSE,
+      '#states' => [
+        'visible' => [
+          ':input[name="secret"]' => ['value' => '_other'],
+        ],
+      ],
     ];
 
     $form['new_secret']['scope_user'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Allow the secret to be viewable by users later'),
       '#default_value' => FALSE,
+      '#states' => [
+        'visible' => [
+          ':input[name="secret"]' => ['value' => '_other'],
+        ],
+      ],
     ];
 
     $form['strip_line_breaks'] = [
