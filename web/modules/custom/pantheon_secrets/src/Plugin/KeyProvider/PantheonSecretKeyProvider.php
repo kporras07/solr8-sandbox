@@ -45,7 +45,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
    */
   public function defaultConfiguration() {
     return [
-      'secret_name' => '',
+      'secret' => '',
       'strip_line_breaks' => TRUE,
     ];
   }
@@ -132,7 +132,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
     $key_provider_settings = $form_state->getValues();
-    $secret_name = $key_provider_settings['secret_name'];
+    $secret_name = $key_provider_settings['secret'];
 
     // Move this line below after the secret is created.
     unset($key_provider_settings['new_secret']);
@@ -162,7 +162,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
    * {@inheritdoc}
    */
   public function getKeyValue(KeyInterface $key) {
-    $secret_name = $this->configuration['secret_name'];
+    $secret_name = $this->configuration['secret'];
     $secret = $this->secretsClient->getSecret($secret_name);
 
     if (!$secret) {
