@@ -50,47 +50,68 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
     ];
   }
 
+  protected function getSecretsOptions() {
+    $secrets_list = $this->secretsClient->getSecrets();
+    var_dump($secrets_list);
+    $options = [];
+    foreach ($secrets_list->getSecrets() as $secret) {
+      $options[$secret->getName()] = $secret->getName();
+    }
+    $options['_other'] = $this->t('New Secret');
+    return $options;
+  }
+
   /**
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form['secret'] = [
       '#type' => 'select',
+      '#description' => $this->t("I'd like this form to provide info on where is the secret coming from (e.g. org/site default/env-specific"),
       '#title' => $this->t('Select your secret'),
-      '#options' => [
-        'org-default-secret1' => 'Secret 1 (Org)',
-        'org-live-secret2' => 'Secret 2 (Org - live)',
-        'site-secret3' => 'Secret 3',
-        'site-live-secret4' => 'Secret 4 (Live)',
-        'new' => 'New Secret',
-      ],
+      '#options' => $this->getSecretsOptions(),
       '#description' => $this->t('Name of the secret set in Pantheon.'),
       '#required' => TRUE,
-      //'#default_value' => $this->getConfiguration()['secret_name'],
+      '#default_value' => $this->getConfiguration()['secret'],
+      '#ajax' => [
+        'callback' => [$this, 'refreshForm'],
+        'event' => 'change',
+        'wrapper' => 'new-secret',
+      ],
     ];
 
-    $form['secret_name'] = [
+    $form['new_secret'] = [
+      '#type' => 'container',
+      '#attributes' => ['id' => 'new-secret'],
+      '#states' => [
+        'visible' => [
+          ':input[name="secret"]' => ['value' => '_other'],
+        ],
+      ],
+    ];
+
+    $form['new_secret']['secret_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Secret name'),
       '#description' => $this->t('Name of the secret set in Pantheon.'),
       '#required' => TRUE,
     ];
 
-    $form['secret_value'] = [
+    $form['new_secret']['secret_value'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Secret value'),
       '#description' => $this->t('Value of the secret set in Pantheon.'),
       '#required' => TRUE,
     ];
 
-    $form['env_specific'] = [
+    $form['new_secret']['env_specific'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Make this secret env specific'),
       '#description' => $this->t('Note that if the secret does not exist at the site level, it will still be created and given an empty (same?) value'),
       '#default_value' => $this->getConfiguration()['scope_user'],
     ];
 
-    $form['scope_user'] = [
+    $form['new_secret']['scope_user'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Allow the secret to be viewable by users later'),
       '#default_value' => $this->getConfiguration()['scope_user'],
@@ -112,6 +133,14 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
     $key_provider_settings = $form_state->getValues();
     $secret_name = $key_provider_settings['secret_name'];
+
+    // Move this line below after the secret is created.
+    unset($key_provider_settings['new_secret']);
+
+    if ($secret_name === '_other') {
+      // @todo Set secret here.
+      return;
+    }
     $secret_value = $this->secretsClient->getSecret($secret_name);
 
     // Does the secret exist.
