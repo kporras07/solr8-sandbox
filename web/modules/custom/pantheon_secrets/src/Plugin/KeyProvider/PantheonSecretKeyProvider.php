@@ -84,7 +84,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#attributes' => ['id' => 'new-secret'],
       '#states' => [
         'visible' => [
-          ':input[name="secret"]' => ['value' => '_other'],
+          'select[name="key_provider_settings[secret]"]' => ['value' => '_other'],
         ],
       ],
     ];
@@ -96,7 +96,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#required' => TRUE,
       '#states' => [
         'visible' => [
-          ':input[name="secret"]' => ['value' => '_other'],
+          'select[name="key_provider_settings[secret]"]' => ['value' => '_other'],
         ],
       ],
     ];
@@ -108,7 +108,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#required' => TRUE,
       '#states' => [
         'visible' => [
-          ':input[name="secret"]' => ['value' => '_other'],
+          'select[name="key_provider_settings[secret]"]' => ['value' => '_other'],
         ],
       ],
     ];
@@ -120,7 +120,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#default_value' => FALSE,
       '#states' => [
         'visible' => [
-          ':input[name="secret"]' => ['value' => '_other'],
+          'select[name="key_provider_settings[secret]"]' => ['value' => '_other'],
         ],
       ],
     ];
@@ -131,7 +131,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#default_value' => FALSE,
       '#states' => [
         'visible' => [
-          ':input[name="secret"]' => ['value' => '_other'],
+          'select[name="key_provider_settings[secret]"]' => ['value' => '_other'],
         ],
       ],
     ];
