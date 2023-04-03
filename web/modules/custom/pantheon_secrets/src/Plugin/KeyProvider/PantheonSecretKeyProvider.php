@@ -14,7 +14,7 @@ use PantheonSystems\CustomerSecrets\CustomerSecretsClientInterface;
  *
  * @KeyProvider(
  *   id = "pantheon_secret",
- *   label = @Translation("Pantheon Secret"),
+ *   label = @Translation("Pantheon Secret UPDATED"),
  *   description = @Translation("The Pantheon Secret key provider allows a key to be retrieved from a pantheon secret."),
  *   storage_method = "pantheon_secret",
  *   key_value = {
