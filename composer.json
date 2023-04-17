@@ -53,6 +53,7 @@
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version",
+        "pantheon/admin_toolbar": "^1.02",
         "phpro/grumphp": "*"
     },
     "conflict": {
