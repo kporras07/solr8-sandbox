@@ -12,10 +12,6 @@
             "type": "vcs",
             "url": "https://git.drupalcode.org/project/pantheon_advanced_page_cache.git"
         },
-        "webp": {
-            "type": "vcs",
-            "url": "https://bitbucket.org/kporras07/webp.git"
-        },
         "sap": {
             "type": "path",
             "url": "modules/search_api_pantheon"
