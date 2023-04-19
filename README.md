@@ -1,6 +1,6 @@
 # Composer-enabled Drupal template - update this line in master
 
-I'm making this change to github repo.
+UPDATE: I'm making this change to github repo.
 
 This is Pantheon's recommended starting point for forking new [Drupal](https://www.drupal.org/) upstreams
 that work with the Platform's Integrated Composer build process. It is also the
