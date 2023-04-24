@@ -8,6 +8,7 @@ use Drupal\key\Plugin\KeyPluginFormInterface;
 use Drupal\key\KeyInterface;
 use PantheonSystems\CustomerSecrets\CustomerSecrets;
 use PantheonSystems\CustomerSecrets\CustomerSecretsClientInterface;
+use Drupal\key\Plugin\KeyPluginDeleteFormInterface;
 
 /**
  * A key provider that allows a key to be retrieved from Pantheon secrets.
@@ -23,7 +24,7 @@ use PantheonSystems\CustomerSecrets\CustomerSecretsClientInterface;
  *   }
  * )
  */
-class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginFormInterface {
+class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginFormInterface, KeyPluginDeleteFormInterface {
 
   /**
    * The customer secrets client.
@@ -129,7 +130,7 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
       '#markup' => $this->t('Remember: deleting this key will NOT delete the secret from Pantheon.'),
     ];
 
-    return parent::buildDeleteForm($form, $form_state);
+    return $form;
   }
 
 }
