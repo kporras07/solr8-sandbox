@@ -120,4 +120,16 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
 
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function buildDeleteForm(array &$form, FormStateInterface $form_state) {
+    $form['warning'] = [
+      '#type' => 'item',
+      '#markup' => $this->t('Remember: deleting this key will NOT delete the secret from Pantheon.'),
+    ];
+
+    return parent::buildDeleteForm($form, $form_state);
+  }
+
 }
