@@ -16,6 +16,10 @@
             "type": "path",
             "url": "modules/search_api_pantheon"
         },
+        "pantheon_secrets": {
+            "type": "path",
+            "url": "modules/pantheon_secrets"
+        },
         "0": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -44,12 +48,12 @@
         "drupal/mailsystem": "^4.4",
         "drupal/metatag": "^1.22",
         "drupal/pantheon_advanced_page_cache": "bugs-5478-dev",
+        "drupal/pantheon_secrets": "1.x-dev",
         "drupal/restui": "^1.21",
         "drupal/sendgrid_api": "^1.0",
         "drupal/sendgrid_mailer": "^1.1",
         "drush/drush": "^11",
         "kporras07/composer-disable-plugin": "*",
-        "pantheon-systems/customer-secrets-php-sdk": "dev-cms-982",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version",
