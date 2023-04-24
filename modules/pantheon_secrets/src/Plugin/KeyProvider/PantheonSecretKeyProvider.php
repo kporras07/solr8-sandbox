@@ -133,4 +133,14 @@ class PantheonSecretKeyProvider extends KeyProviderBase implements KeyPluginForm
     return $form;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function validateDeleteForm(array &$form, FormStateInterface $form_state) {}
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitDeleteForm(array &$form, FormStateInterface $form_state) {}
+
 }
