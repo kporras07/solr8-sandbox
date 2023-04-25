@@ -44,7 +44,7 @@ class SecretsSyncer implements SecretsSyncerInterface {
       $query = $this->entityTypeManager->getStorage('key')->getQuery();
       $keys = $query->condition('key_provider', 'pantheon')->execute();
       foreach ($secrets as $secret) {
-        if (!$this->secretInUse($secret->name, $keys)) {
+        if (!$this->secretInUse($secret->getName(), $keys)) {
           // Create and save a new key item only if the secret is not in use.
           $key = $this->entityTypeManager->getStorage('key')->create([
             'id' => $secret->getName(),
