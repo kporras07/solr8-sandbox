@@ -35,7 +35,7 @@ class SecretsSyncer implements SecretsSyncerInterface {
       $this->entityTypeManager = $entityTypeManager;
       $this->secretsClient = CustomerSecrets::create()->getClient();
   }
- 
+
   /**
    * {@inheritdoc}
    */
