@@ -47,12 +47,12 @@ class SecretsSyncer implements SecretsSyncerInterface {
         if (!$this->secretInUse($secret->name, $keys)) {
           // Create and save a new key item only if the secret is not in use.
           $key = $this->entityTypeManager->getStorage('key')->create([
-            'id' => $secret->name,
-            'label' => $secret->name,
+            'id' => $secret->getName(),
+            'label' => $secret->getName(),
             'key_provider' => 'pantheon',
             'key_type' => 'authentication',
             'key_provider_settings' => [
-              'secret_name' => $secret->name,
+              'secret_name' => $secret->getName(),
             ],
           ]);
           $key->save();
