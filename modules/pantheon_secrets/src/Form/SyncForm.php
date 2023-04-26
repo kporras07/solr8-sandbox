@@ -5,6 +5,7 @@ namespace Drupal\pantheon_secrets\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\pantheon_secrets\SecretsSyncer\SecretsSyncerInterface;
 
 /**
  * Implements an example form.
