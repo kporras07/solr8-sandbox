@@ -42,6 +42,7 @@ class PantheonSecretsCommands extends DrushCommands {
     catch (\Exception $e) {
       $this->logger()->error(dt('An error ocurred adding secrets: @error', ['@error' => $e->getMessage()]));
       return self::EXIT_FAILURE;
+    }
   }
 
 }
