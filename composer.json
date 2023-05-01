@@ -4,10 +4,6 @@
     "type": "project",
     "license": "MIT",
     "repositories": {
-        "admin_toolbar": {
-            "type": "vcs",
-            "url": "https://github.com/namespacebrian/admin_toolbar"
-        },
         "papc": {
             "type": "vcs",
             "url": "https://git.drupalcode.org/project/pantheon_advanced_page_cache.git"
