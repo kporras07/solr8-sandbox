@@ -44,7 +44,6 @@
         "drupal/mailsystem": "^4.4",
         "drupal/metatag": "^1.22",
         "drupal/pantheon_advanced_page_cache": "bugs-5478-dev",
-        "drupal/pantheon_secrets": "1.x-dev",
         "drupal/restui": "^1.21",
         "drupal/sendgrid_api": "^1.0",
         "drupal/sendgrid_mailer": "^1.1",
