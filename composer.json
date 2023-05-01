@@ -48,7 +48,6 @@
         "drupal/sendgrid_api": "^1.0",
         "drupal/sendgrid_mailer": "^1.1",
         "drush/drush": "^11",
-        "kporras07/composer-disable-plugin": "*",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/search_api_pantheon": "^8.x-dev",
         "pantheon-upstreams/upstream-configuration": "self.version",
