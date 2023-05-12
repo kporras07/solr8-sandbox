@@ -178,3 +178,4 @@ function _slack_notification($slack_url, $channel, $username, $text, $attachment
   print("RESULT: $result");
   // $payload_pretty = json_encode($post,JSON_PRETTY_PRINT); // Uncomment to debug JSON
   // 
+}
