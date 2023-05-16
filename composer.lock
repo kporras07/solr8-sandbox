@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a608519207b1891bc2a59dc7d14c3719",
+    "content-hash": "2e5e4db5215ec35df6b50b74897044d8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2469,37 +2469,38 @@
         },
         {
             "name": "drupal/metatag",
-            "version": "1.21.0",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/metatag.git",
-                "reference": "8.x-1.21"
+                "reference": "8.x-1.23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.21.zip",
-                "reference": "8.x-1.21",
-                "shasum": "677ff7384b557390d4d1a36f335452e8172f741d"
+                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.23.zip",
+                "reference": "8.x-1.23",
+                "shasum": "d0e53e4f41c759ea8ca4c504fc6fee9a5184a701"
             },
             "require": {
-                "drupal/core": "^9",
-                "drupal/token": "^1.0",
-                "php": ">=7.0"
+                "drupal/core": "^9.3 || ^10",
+                "drupal/token": "^1.0"
             },
             "require-dev": {
-                "drupal/devel": "^4.0",
+                "drupal/devel": "^4.0 || ^5.0",
+                "drupal/hal": "^9 || ^1 || ^2",
                 "drupal/metatag_dc": "*",
                 "drupal/metatag_open_graph": "*",
-                "drupal/page_manager": "4.x-dev",
-                "drupal/panelizer": "4.x-dev",
-                "drupal/redirect": "1.x-dev",
+                "drupal/page_manager": "^4.0",
+                "drupal/panelizer": "^4.0",
+                "drupal/redirect": "^1.0",
+                "drupal/webprofiler": "^9 || ^10",
                 "mpyw/phpunit-patch-serializable-comparison": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.21",
-                    "datestamp": "1657971667",
+                    "version": "8.x-1.23",
+                    "datestamp": "1683903480",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11163,16 +11164,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "8.11.1",
+            "version": "8.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "af87461316b257e46e15bb041dca6fca3796d822"
+                "reference": "f69e2524e8770efb9b3e5ac4a0ebc0d54eb446d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/af87461316b257e46e15bb041dca6fca3796d822",
-                "reference": "af87461316b257e46e15bb041dca6fca3796d822",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/f69e2524e8770efb9b3e5ac4a0ebc0d54eb446d7",
+                "reference": "f69e2524e8770efb9b3e5ac4a0ebc0d54eb446d7",
                 "shasum": ""
             },
             "require": {
@@ -11184,11 +11185,11 @@
             "require-dev": {
                 "phing/phing": "2.17.4",
                 "php-parallel-lint/php-parallel-lint": "1.3.2",
-                "phpstan/phpstan": "1.10.14",
+                "phpstan/phpstan": "1.10.15",
                 "phpstan/phpstan-deprecation-rules": "1.1.3",
                 "phpstan/phpstan-phpunit": "1.3.11",
                 "phpstan/phpstan-strict-rules": "1.5.1",
-                "phpunit/phpunit": "7.5.20|8.5.21|9.6.6|10.1.1"
+                "phpunit/phpunit": "7.5.20|8.5.21|9.6.8|10.1.3"
             },
             "type": "phpcodesniffer-standard",
             "extra": {
@@ -11212,7 +11213,7 @@
             ],
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/8.11.1"
+                "source": "https://github.com/slevomat/coding-standard/tree/8.12.1"
             },
             "funding": [
                 {
@@ -11224,7 +11225,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-24T08:19:01+00:00"
+            "time": "2023-05-15T21:42:25+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
