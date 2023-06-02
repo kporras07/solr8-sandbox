@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e5e4db5215ec35df6b50b74897044d8",
+    "content-hash": "017eea5b792bb24bb25d23768e998c5b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2469,17 +2469,17 @@
         },
         {
             "name": "drupal/metatag",
-            "version": "1.23.0",
+            "version": "1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/metatag.git",
-                "reference": "8.x-1.23"
+                "reference": "8.x-1.25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.23.zip",
-                "reference": "8.x-1.23",
-                "shasum": "d0e53e4f41c759ea8ca4c504fc6fee9a5184a701"
+                "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.25.zip",
+                "reference": "8.x-1.25",
+                "shasum": "8603d84df3b93dd02dae601d57a6347598829e56"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10",
@@ -2490,7 +2490,7 @@
                 "drupal/hal": "^9 || ^1 || ^2",
                 "drupal/metatag_dc": "*",
                 "drupal/metatag_open_graph": "*",
-                "drupal/page_manager": "^4.0",
+                "drupal/page_manager": "*",
                 "drupal/panelizer": "^4.0",
                 "drupal/redirect": "^1.0",
                 "drupal/webprofiler": "^9 || ^10",
@@ -2499,8 +2499,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.23",
-                    "datestamp": "1683903480",
+                    "version": "8.x-1.25",
+                    "datestamp": "1685541226",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2569,6 +2569,35 @@
                 ]
             },
             "time": "2022-11-25T17:40:37+00:00"
+        },
+        {
+            "name": "drupal/pantheon_secrets",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "modules/pantheon_secrets",
+                "reference": "d103f0f36448f32fd985230a94e12e54a4d8bfef"
+            },
+            "require": {
+                "drupal/key": "^1.16",
+                "pantheon-systems/customer-secrets-php-sdk": "^1.0"
+            },
+            "require-dev": {
+                "drupal/coder": "^8.3",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "type": "drupal-module",
+            "scripts": {
+                "code:lint": [
+                    "vendor/bin/phpcs src --standard=Drupal",
+                    "vendor/bin/phpcs src --standard=DrupalPractice"
+                ]
+            },
+            "description": "Pantheon secrets integration with the Key module",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "drupal/restui",
@@ -3995,6 +4024,81 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
             },
             "time": "2023-03-05T19:49:14+00:00"
+        },
+        {
+            "name": "pantheon-systems/customer-secrets-php-sdk",
+            "version": "v1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pantheon-systems/customer-secrets-php-sdk.git",
+                "reference": "4e52955a0b89fb747b74b5f4924e2b4c2cb5c819"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pantheon-systems/customer-secrets-php-sdk/zipball/4e52955a0b89fb747b74b5f4924e2b4c2cb5c819",
+                "reference": "4e52955a0b89fb747b74b5f4924e2b4c2cb5c819",
+                "shasum": ""
+            },
+            "require-dev": {
+                "g1a/composer-test-scenarios": "^3.2",
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3.6",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "scenarios": {
+                    "php7.4": {
+                        "config": {
+                            "platform": {
+                                "php": "7.4.33"
+                            }
+                        }
+                    },
+                    "php8.1": {
+                        "config": {
+                            "platform": {
+                                "php": "8.1.13"
+                            }
+                        }
+                    },
+                    "php8.2": {
+                        "config": {
+                            "platform": {
+                                "php": "8.2.0"
+                            }
+                        }
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PantheonSystems\\CustomerSecrets\\": "src/"
+                }
+            },
+            "scripts": {
+                "cs": [
+                    "vendor/bin/phpcs --standard=PSR2 src tests"
+                ],
+                "test": [
+                    "XDEBUG_MODE=coverage vendor/bin/phpunit --colors=always -c ./phpunit.xml --debug --do-not-cache-result --verbose --stop-on-failure"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Stovall",
+                    "email": "119924+stovak@users.noreply.github.com"
+                }
+            ],
+            "description": "Supporting libraries for customer secrets project",
+            "support": {
+                "source": "https://github.com/pantheon-systems/customer-secrets-php-sdk/tree/v1.0.0-alpha1",
+                "issues": "https://github.com/pantheon-systems/customer-secrets-php-sdk/issues"
+            },
+            "time": "2023-01-05T20:04:03+00:00"
         },
         {
             "name": "pantheon-systems/drupal-integrations",
